@@ -1,0 +1,268 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>Projects - Muhammad Imran</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <link rel="stylesheet" href="assets/css/main.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    #sidebar .logo {
+      font-size: 1.8rem;
+      font-weight: 900;
+      color: #ffffff;
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+      line-height: 1.2;
+      letter-spacing: 1px;
+    }
+
+    #sidebar .logo .last-name {
+      color: #00d2ff;
+      font-size: 2.2rem;
+      font-weight: 900;
+    }
+
+    body {
+      background: #121212;
+      color: white;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    #sidebar {
+      position: fixed;
+      left: 0;
+      top: 0;
+      height: 100vh;
+      width: 220px;
+      background: #1e1e1e;
+      padding: 2rem 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      z-index: 1000;
+    }
+
+    #sidebar ul {
+      list-style: none;
+      padding: 0;
+      width: 100%;
+    }
+
+    #sidebar ul li {
+      margin: 1rem 0;
+    }
+
+    #sidebar ul li a {
+      color: white;
+      text-decoration: none;
+      font-size: 1rem;
+      transition: 0.2s;
+    }
+
+    #sidebar ul li a:hover {
+      color: #1e90ff;
+    }
+
+    #main {
+      margin-left: 240px;
+      padding: 4rem 2rem;
+      background: #121212;
+      min-height: 100vh;
+    }
+
+    h2 {
+      color: #00d2ff;
+      margin-bottom: 1rem;
+    }
+
+    .project {
+      background: #181818;
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.4);
+      margin-bottom: 2rem;
+      transition: transform 0.3s ease, opacity 0.4s;
+      animation: fadeUp 1s ease forwards;
+      opacity: 0;
+    }
+
+    .project h3 {
+      font-size: 1.25rem;
+      color: #ffffff;
+      margin-bottom: 0.3rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .project span {
+      font-size: 0.9rem;
+      color: #888;
+      margin-bottom: 0.8rem;
+      display: block;
+    }
+
+    .project ul {
+      list-style: none;
+      padding-left: 0;
+      margin: 0;
+    }
+
+    .project ul li {
+      margin-bottom: 0.6rem;
+      line-height: 1.6;
+      color: #ddd;
+      position: relative;
+      padding-left: 1.2rem;
+    }
+
+    .project ul li::before {
+      content: "\f058";
+      font-family: "Font Awesome 6 Free";
+      font-weight: 900;
+      position: absolute;
+      left: 0;
+      color: #00d2ff;
+      font-size: 0.9rem;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .mode-toggle {
+      position: fixed;
+      top: 20px;
+      right: 30px;
+      background: #fff;
+      color: #000;
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      font-size: 18px;
+      z-index: 1100;
+    }
+
+    body.light-mode {
+      background: #f1f1f1;
+      color: #111;
+    }
+
+    body.light-mode .project {
+      background: #fff;
+      color: #111;
+    }
+
+    body.light-mode .project ul li {
+      color: #333;
+    }
+
+    body.light-mode .mode-toggle {
+      background: #121212;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <aside id="sidebar">
+    <div class="logo">MUHAMMAD<br><span class="last-name">IMRAN</span></div>
+    <ul>
+      <li><a href="about.html">About</a></li>
+      <li><a href="experience.html">Experience</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="skills.html">Skills</a></li>
+      <li><a href="education.html">Education</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="resume.html">Resume</a></li>
+    </ul>
+  </aside>
+
+  <!-- Mode Toggle Button -->
+  <button class="mode-toggle" onclick="toggleMode()"><i class="fas fa-moon"></i></button>
+
+  <!-- Main Content -->
+  <div id="main">
+    <section class="post">
+      <h2>Projects</h2>
+
+      <div class="project">
+        <h3>Cloud-Based Maze Solver</h3>
+        <span>Jan 2025 – Apr 2025 · Farmingdale State College</span>
+        <ul>
+          <li>Built a JavaFX-based animated maze solver with keyboard navigation and pixel-based detection</li>
+          <li>Designed a tabbed UI and integrated multiple maze types using FXML and Scene Builder</li>
+          <li>Focused on animation effects, object-oriented design, and performance tuning</li>
+        </ul>
+      </div>
+
+      <div class="project">
+        <h3>JavaFX Game – 24 Point Card Challenge</h3>
+        <span>Feb 2025 – Mar 2025 · Farmingdale State College | <a href="https://www.youtube.com/watch?v=KOG_xwrZXik" target="_blank">Watch Demo</a></span>
+        <ul>
+          <li>Developed an interactive card game using JavaFX where players create expressions totaling 24</li>
+          <li>Integrated Google Gemini API for real-time AI hints and gameplay enhancement</li>
+          <li>Implemented animations, levels, and polished UI with FXML</li>
+        </ul>
+      </div>
+
+      <div class="project">
+        <h3>Banking System</h3>
+        <span>Aug 2024 – Oct 2024 · Farmingdale State College | <a href="https://github.com/Muhammad7839/bankingsystem.git" target="_blank">View Code</a></span>
+        <ul>
+          <li>Created a secure JavaFX application for deposits, withdrawals, and transfers</li>
+          <li>Included PIN-based authentication, file I/O, and exception handling</li>
+          <li>Focused on usability and real-world transaction simulation</li>
+        </ul>
+      </div>
+
+      <div class="project">
+        <h3>Event Website Project (Live)</h3>
+        <span>Link: <a href="https://sage-lively-needle-305.vscodeedu.app" target="_blank">Visit Site</a></span>
+        <ul>
+          <li>Built a multi-section HTML/CSS/JavaScript event website with countdown timer and RSVP form</li>
+          <li>Added theme toggle (light/dark) and localStorage persistence</li>
+          <li>Included embedded video and responsive design for all devices</li>
+        </ul>
+      </div>
+
+      <div class="project">
+        <h3>Franchise Simulation</h3>
+        <ul>
+          <li>Simulated McDonald's franchise logic with Java classes for order and process flow</li>
+          <li>Enhanced understanding of backend architecture and team-based programming</li>
+        </ul>
+      </div>
+
+      <div class="project">
+        <h3>Weather Visualization & SQL Design</h3>
+        <ul>
+          <li>Developed a Python-based visualization tool using Turtle graphics to display weather data</li>
+          <li>Designed a relational database in MS SQL Server for structured storage and querying</li>
+        </ul>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    function toggleMode() {
+      document.body.classList.toggle('light-mode');
+      const icon = document.querySelector('.mode-toggle i');
+      icon.classList.toggle('fa-moon');
+      icon.classList.toggle('fa-sun');
+    }
+  </script>
+
+</body>
+</html>
