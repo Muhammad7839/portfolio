@@ -1,0 +1,202 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>About - Muhammad Imran</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <link rel="stylesheet" href="assets/css/main.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    body { background: #121212; color: white; font-family: 'Segoe UI', sans-serif; }
+
+    #sidebar {
+      position: fixed;
+      left: 0; top: 0;
+      height: 100vh;
+      width: 220px;
+      background: #1e1e1e;
+      padding: 2rem 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      z-index: 1000;
+    }
+
+    #sidebar ul {
+      list-style: none;
+      padding: 0;
+      width: 100%;
+    }
+
+    #sidebar ul li {
+      margin: 1rem 0;
+    }
+
+    #sidebar ul li a {
+      color: white;
+      text-decoration: none;
+      font-size: 1rem;
+      transition: 0.2s;
+    }
+
+    #sidebar ul li a:hover {
+      color: #1e90ff;
+    }
+
+    #main {
+      margin-left: 240px;
+      padding: 4rem 2rem;
+      background: #121212;
+      min-height: 100vh;
+    }
+
+    h2 {
+      color: #00d2ff;
+      margin-bottom: 1.5rem;
+      font-size: 2rem;
+      letter-spacing: 0.5px;
+    }
+
+    .about-box {
+      background: linear-gradient(135deg, #1a1a1a, #202020);
+      padding: 2.5rem;
+      border-radius: 16px;
+      box-shadow: 0 0 25px rgba(0, 210, 255, 0.15);
+      animation: fadeUp 1s ease-out forwards;
+      opacity: 0;
+    }
+
+    .about-box h3 {
+      color: #00d2ff;
+      margin-bottom: 0.8rem;
+      font-size: 1.4rem;
+    }
+
+    .about-box p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: #ddd;
+      margin-bottom: 1.5rem;
+    }
+
+    .about-box ul {
+      padding-left: 1.2rem;
+      list-style: none;
+    }
+
+    .about-box ul li::before {
+      content: "\f058";
+      font-family: "Font Awesome 6 Free";
+      font-weight: 900;
+      color: #00d2ff;
+      margin-right: 0.6rem;
+    }
+
+    .about-box ul li {
+      margin-bottom: 0.7rem;
+      color: #ccc;
+    }
+
+    .mode-toggle {
+      position: fixed;
+      top: 20px;
+      right: 30px;
+      background: #fff;
+      color: #000;
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      font-size: 18px;
+      z-index: 1100;
+    }
+
+    body.light-mode {
+      background: #f1f1f1;
+      color: #111;
+    }
+
+    body.light-mode .about-box {
+      background: #fff;
+      color: #111;
+    }
+
+    body.light-mode .about-box p,
+    body.light-mode .about-box ul li {
+      color: #333;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <aside id="sidebar">
+    <ul>
+      <li><a href="about.html">About</a></li>
+      <li><a href="experience.html">Experience</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="skills.html">Skills</a></li>
+      <li><a href="education.html">Education</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="resume.html">Resume</a></li>
+    </ul>
+  </aside>
+
+  <!-- Mode Toggle Button -->
+  <button class="mode-toggle" onclick="toggleMode()"><i class="fas fa-moon"></i></button>
+
+  <!-- Main Content -->
+  <div id="main">
+    <section class="post">
+      <h2>About Me</h2>
+      <div class="about-box">
+        <h3>Who I Am</h3>
+        <p>
+          I’m Muhammad Imran, a driven Computer Science student at Farmingdale State College with a minor in Applied Mathematics. I love solving problems, whether it's through system design, debugging code, or developing new features. I constantly seek opportunities to improve, collaborate, and create impactful technology.
+        </p>
+
+        <h3>Academic + Technical Experience</h3>
+        <p>
+          I’ve engineered backend systems using Java and Spring Boot, developed animated JavaFX applications, and built full-stack web solutions. My academic journey and real-world projects have strengthened my expertise in object-oriented programming, API development, and scalable system architecture.
+        </p>
+
+        <h3>Professional Summary</h3>
+        <p>
+          “With over 19 months of hands-on experience, I’ve engineered interactive applications using Java and JavaFX, built responsive front-end features with HTML, and leveraged tools like Docker, Git, AWS, and Azure to deliver real-world, scalable software solutions.”
+        </p>
+
+        <h3>Tech Stack</h3>
+        <ul>
+          <li>Languages: Python, Java, C++, JavaScript, HTML/CSS, Bash</li>
+          <li>Databases: MySQL, PostgreSQL, MongoDB</li>
+          <li>Frameworks: Flask, Django, Spring Boot, Node.js</li>
+          <li>Libraries: NumPy, Pandas, OpenCV</li>
+          <li>Tools: Git, Docker, JIRA, Heroku, GCP, AWS</li>
+        </ul>
+
+        <h3>Mission</h3>
+        <p>
+          I'm passionate about building clean, secure, and ethical software that solves real-world problems and improves lives. I strive to bring innovation, efficiency, and teamwork into every project I take on.
+        </p>
+      </div>
+    </section>
+  </div>
+
+  <!-- JS Script -->
+  <script>
+    function toggleMode() {
+      document.body.classList.toggle('light-mode');
+      const icon = document.querySelector('.mode-toggle i');
+      icon.classList.toggle('fa-moon');
+      icon.classList.toggle('fa-sun');
+    }
+  </script>
+</body>
+</html>
