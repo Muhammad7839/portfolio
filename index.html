@@ -307,10 +307,21 @@
   <!-- Scripts -->
   <script>
     function enterSite() {
-      document.getElementById('splash').classList.add('hidden');
-      document.getElementById('hero-section').classList.remove('hidden');
-      typeText();
-    }
+  const splash = document.getElementById('splash');
+  const hero = document.getElementById('hero-section');
+
+  if (splash) {
+    splash.style.display = 'none'; // Fully hide the splash screen
+  }
+  
+  if (hero) {
+    hero.classList.remove('hidden'); // Remove 'hidden' class
+    hero.style.display = 'flex';      // Force display flex for hero section
+  }
+
+  typeText(); // Start typing Muhammad Imran
+}
+
 
     function typeText() {
       const text = "Muhammad Imran";
