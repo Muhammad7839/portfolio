@@ -95,17 +95,11 @@
     }
 
     @keyframes glowPulse {
-      from {
-        box-shadow: 0 0 20px rgba(0, 210, 255, 0.4), 0 0 30px rgba(58, 71, 213, 0.4);
-      }
-      to {
-        box-shadow: 0 0 35px rgba(0, 210, 255, 1), 0 0 45px rgba(58, 71, 213, 0.9);
-      }
+      from { box-shadow: 0 0 20px rgba(0, 210, 255, 0.4), 0 0 30px rgba(58, 71, 213, 0.4); }
+      to { box-shadow: 0 0 35px rgba(0, 210, 255, 1), 0 0 45px rgba(58, 71, 213, 0.9); }
     }
 
-    .hidden {
-      display: none;
-    }
+    .hidden { display: none; }
 
     /* Sidebar */
     #sidebar {
@@ -181,8 +175,6 @@
       white-space: nowrap;
       border-right: 3px solid var(--primary);
       overflow: hidden;
-      width: 0;
-      animation: none;
     }
 
     .hero-left p {
@@ -227,15 +219,6 @@
 
     body.light-mode .hero-left h1 {
       -webkit-text-fill-color: transparent;
-    }
-
-    @keyframes typing {
-      from { width: 0 }
-      to { width: 100% }
-    }
-
-    @keyframes blink {
-      50% { border-color: transparent; }
     }
 
     @keyframes fadeInLeft {
@@ -301,42 +284,35 @@
     </div>
     <div class="hero-right">
       <img src="images/imran.jpg" alt="Muhammad Imran">
-
     </div>
   </div>
 
   <!-- Scripts -->
   <script>
     function enterSite() {
-  const splash = document.getElementById('splash');
-  const hero = document.getElementById('hero-section');
+      const splash = document.getElementById('splash');
+      const hero = document.getElementById('hero-section');
 
-  if (splash) {
-    splash.style.display = 'none'; // Fully hide the splash screen
-  }
-  
-  if (hero) {
-    hero.classList.remove('hidden'); // Remove 'hidden' class
-    hero.style.display = 'flex';      // Force display flex for hero section
-  }
+      if (splash) splash.style.display = 'none';
+      if (hero) {
+        hero.classList.remove('hidden');
+        hero.style.display = 'flex';
+      }
 
-  typeText(); // Start typing Muhammad Imran
-}
+      startTyping();
+    }
 
-
-    function typeText() {
+    function startTyping() {
       const text = "Muhammad Imran";
-      let i = 0;
-      const speed = 150;
       const target = document.getElementById("typing-name");
+      let i = 0;
       target.textContent = "";
-      target.style.animation = "typing 5s steps(30, end) forwards, blink 0.75s step-end infinite";
 
       function typeLetter() {
         if (i < text.length) {
           target.textContent += text.charAt(i);
           i++;
-          setTimeout(typeLetter, speed);
+          setTimeout(typeLetter, 150);
         }
       }
 
