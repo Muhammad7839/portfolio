@@ -32,12 +32,6 @@
       color: var(--text-light);
       transition: background 0.4s ease, color 0.4s ease;
     }
-
-    body.light-mode {
-      background: var(--bg-light);
-      color: var(--text-dark);
-    }
-
     #sidebar {
       position: fixed;
       left: 0;
@@ -96,24 +90,12 @@
       background: var(--bg-dark);
       animation: fadeUp 1s ease-out forwards;
     }
-
-    body.light-mode #main {
-      background: var(--bg-light);
-    }
-
     section.post {
       background: var(--card-dark);
       padding: 2rem;
       border-radius: 12px;
       box-shadow: 0 0 15px rgba(0,0,0,0.4);
     }
-
-    body.light-mode section.post {
-      background: var(--card-light);
-      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
-      border: 1px solid var(--border-light);
-    }
-
     section.post h2 {
       color: var(--primary);
       margin-bottom: 2rem;
@@ -130,11 +112,6 @@
       text-transform: uppercase;
       letter-spacing: 0.5px;
     }
-
-    body.light-mode .skill-group h3 {
-      color: var(--secondary);
-    }
-
     .skill-list {
       list-style: none;
       padding: 0;
@@ -165,44 +142,7 @@
       background: var(--chip-dark-hover);
       color: white;
     }
-
-    body.light-mode .skill-list li {
-      background: var(--chip-light);
-      color: var(--muted-light);
-      border: 1px solid var(--border-light);
-    }
-
-    body.light-mode .skill-list li:hover {
-      background: var(--chip-light-hover);
-      color: var(--text-dark);
-    }
-
-    body.light-mode .skill-list li i {
-      color: var(--secondary);
-    }
-
-    .mode-toggle {
-      position: fixed;
-      top: 20px;
-      right: 30px;
-      background: white;
-      color: black;
-      border: none;
-      border-radius: 50%;
-      width: 40px;
-      height: 40px;
-      font-size: 18px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.3);
-      cursor: pointer;
-      z-index: 1100;
-    }
-
-    body.light-mode .mode-toggle {
-      background: #222;
-      color: white;
-    }
-
-    @keyframes fadeUp {
+@keyframes fadeUp {
       from { opacity: 0; transform: translateY(40px); }
       to { opacity: 1; transform: translateY(0); }
     }
@@ -215,7 +155,6 @@
 </head>
 <body>
 
-  <button class="mode-toggle" onclick="toggleMode()"><i class="fas fa-moon"></i></button>
 
   <aside id="sidebar">
     <div class="logo">MUHAMMAD<br><span class="last-name">IMRAN</span></div>
@@ -305,12 +244,6 @@
   </div>
 
   <script>
-    function toggleMode() {
-      document.body.classList.toggle('light-mode');
-      const icon = document.querySelector('.mode-toggle i');
-      icon.classList.toggle('fa-moon');
-      icon.classList.toggle('fa-sun');
-    }
   </script>
 </body>
 </html>

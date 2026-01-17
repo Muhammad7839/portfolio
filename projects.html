@@ -151,53 +151,7 @@
         transform: translateY(0);
       }
     }
-
-    .mode-toggle {
-      position: fixed;
-      top: 20px;
-      right: 30px;
-      background: #fff;
-      color: #000;
-      border: none;
-      border-radius: 50%;
-      width: 40px;
-      height: 40px;
-      cursor: pointer;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-      font-size: 18px;
-      z-index: 1100;
-    }
-
-    body.light-mode {
-      background: #f1f1f1;
-      color: #111;
-    }
-
-    body.light-mode .project {
-      background: #fff;
-      color: #111;
-    }
-
-    body.light-mode .project ul li {
-      color: #333;
-    }
-
-    body.light-mode .mode-toggle {
-      background: #121212;
-      color: white;
-    }
-
-    /* Keep links visible in light mode too */
-    body.light-mode .project span a {
-      color: #0b5fff;
-      text-shadow: none;
-    }
-
-    body.light-mode .project span a:hover {
-      color: #111;
-      text-shadow: none;
-    }
-  </style>
+/* Keep links visible in light mode too */</style>
 </head>
 <body>
 
@@ -216,7 +170,6 @@
   </aside>
 
   <!-- Mode Toggle Button -->
-  <button class="mode-toggle" onclick="toggleMode()"><i class="fas fa-moon"></i></button>
 
   <!-- Main Content -->
   <div id="main">
@@ -302,12 +255,6 @@
   </div>
 
   <script>
-    function toggleMode() {
-      document.body.classList.toggle('light-mode');
-      const icon = document.querySelector('.mode-toggle i');
-      icon.classList.toggle('fa-moon');
-      icon.classList.toggle('fa-sun');
-    }
   </script>
 
 </body>
