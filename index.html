@@ -16,7 +16,7 @@
       --text-dark: #111;
       --text-light: #fff;
     }
-   /* Forced update to fix startTyping error */
+    /* Forced update to fix startTyping error */
 
     * {
       margin: 0;
@@ -44,6 +44,14 @@
       align-items: center;
       z-index: 9999;
       animation: fadeIn 1.5s ease-in-out forwards;
+      opacity: 1;
+    }
+
+    /* Added: fade-out effect */
+    #splash.fade-out {
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.9s ease;
     }
 
     .popup-content {
@@ -176,6 +184,7 @@
       white-space: nowrap;
       border-right: 3px solid var(--primary);
       overflow: hidden;
+      min-height: 1.2em;
     }
 
     .hero-left p {
@@ -192,7 +201,7 @@
     }
 
     .hero-right img {
-      width: 90%;
+      width: 80%;
       height: auto;
       border-radius: 16px;
       box-shadow: 0 0 40px rgba(0, 0, 0, 0.6);
@@ -241,7 +250,7 @@
       }
 
       .hero-right img {
-        width: 100%;
+        width: 85%;
       }
 
       #sidebar {
@@ -254,10 +263,9 @@
 
   <!-- Splash Screen -->
   <div id="splash">
-    <div class="popup-content">
-      <h1>WELCOME TO MUHAMMAD IMRAN'S PORTFOLIO</h1>
-      <button onclick="enterSite()">ENTER</button>
-    </div>
+   <div class="popup-content">
+  <h1>Building Real Software, Beyond Just Projects</h1>
+</div>
   </div>
 
   <!-- Sidebar -->
@@ -279,17 +287,30 @@
   <!-- Hero Section -->
   <div class="hero-container hidden" id="hero-section">
     <div class="hero-left">
-      <h2>Hello, my name is</h2>
+      <h2>Focused on building things that matter</h2>
       <h1 id="typing-name"></h1>
-      <p>Aspiring Software Engineer</p>
+      <p>Clarity. Structure. Purpose.</p>
     </div>
     <div class="hero-right">
-      <img src="images/imran.jpg" alt="Muhammad Imran">
+      <img src="images/recent.jpeg" alt="Muhammad Imran">
     </div>
   </div>
 
   <!-- Scripts -->
   <script>
+    // Added: auto-enter after a short delay, without removing your click option
+    window.addEventListener("load", () => {
+      setTimeout(() => {
+        // If the user already clicked, do nothing
+        const splash = document.getElementById('splash');
+        if (!splash || splash.style.display === 'none') return;
+
+        // Fade out smoothly, then enter
+        splash.classList.add('fade-out');
+        setTimeout(() => enterSite(), 900);
+      }, 1300);
+    });
+
     function enterSite() {
       const splash = document.getElementById('splash');
       const hero = document.getElementById('hero-section');
@@ -307,6 +328,8 @@
       const text = "Muhammad Imran";
       const target = document.getElementById("typing-name");
       let i = 0;
+
+      if (!target) return;
       target.textContent = "";
 
       function typeLetter() {
@@ -323,6 +346,7 @@
     function toggleMode() {
       document.body.classList.toggle('light-mode');
       const icon = document.querySelector('.mode-toggle i');
+      if (!icon) return;
       icon.classList.toggle('fa-moon');
       icon.classList.toggle('fa-sun');
     }

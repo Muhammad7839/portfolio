@@ -15,6 +15,15 @@
       --bg-light: #f1f1f1;
       --text-dark: #111;
       --text-light: #fff;
+      --card-dark: #181818;
+      --card-light: #ffffff;
+      --chip-dark: #202020;
+      --chip-dark-hover: #292929;
+      --chip-light: #f4f6f8;
+      --chip-light-hover: #e9eef3;
+      --muted-dark: #ccc;
+      --muted-light: #333;
+      --border-light: #e6e6e6;
     }
 
     body {
@@ -44,20 +53,21 @@
     }
 
     #sidebar .logo {
-  font-size: 1.8rem;
-  font-weight: 900;
-  color: #ffffff;
-  text-transform: uppercase;
-  margin-bottom: 2rem;
-  line-height: 1.2;
-  letter-spacing: 1px;
-}
+      font-size: 1.8rem;
+      font-weight: 900;
+      color: #ffffff;
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+      line-height: 1.2;
+      letter-spacing: 1px;
+    }
 
-#sidebar .logo .last-name {
-  color: #ffffff;
-  font-size: 2.2rem;
-  font-weight: 900;
-}
+    #sidebar .logo .last-name {
+      color: var(--primary);
+      font-size: 2.2rem;
+      font-weight: 900;
+    }
+
     #sidebar ul {
       list-style: none;
       padding: 0;
@@ -87,11 +97,21 @@
       animation: fadeUp 1s ease-out forwards;
     }
 
+    body.light-mode #main {
+      background: var(--bg-light);
+    }
+
     section.post {
-      background: #181818;
+      background: var(--card-dark);
       padding: 2rem;
       border-radius: 12px;
       box-shadow: 0 0 15px rgba(0,0,0,0.4);
+    }
+
+    body.light-mode section.post {
+      background: var(--card-light);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+      border: 1px solid var(--border-light);
     }
 
     section.post h2 {
@@ -104,11 +124,15 @@
     }
 
     .skill-group h3 {
-      color: #00d2ff;
+      color: var(--primary);
       margin-bottom: 1rem;
       font-size: 1.1rem;
       text-transform: uppercase;
       letter-spacing: 0.5px;
+    }
+
+    body.light-mode .skill-group h3 {
+      color: var(--secondary);
     }
 
     .skill-list {
@@ -120,15 +144,16 @@
     }
 
     .skill-list li {
-      background: #202020;
+      background: var(--chip-dark);
       padding: 0.6rem 1rem;
       border-radius: 8px;
-      color: #ccc;
+      color: var(--muted-dark);
       font-size: 0.95rem;
       display: flex;
       align-items: center;
       gap: 8px;
-      transition: all 0.3s;
+      transition: all 0.2s ease;
+      border: 1px solid transparent;
     }
 
     .skill-list li i {
@@ -137,8 +162,23 @@
     }
 
     .skill-list li:hover {
-      background: #292929;
+      background: var(--chip-dark-hover);
       color: white;
+    }
+
+    body.light-mode .skill-list li {
+      background: var(--chip-light);
+      color: var(--muted-light);
+      border: 1px solid var(--border-light);
+    }
+
+    body.light-mode .skill-list li:hover {
+      background: var(--chip-light-hover);
+      color: var(--text-dark);
+    }
+
+    body.light-mode .skill-list li i {
+      color: var(--secondary);
     }
 
     .mode-toggle {
@@ -198,6 +238,7 @@
         <h3><i class="fas fa-code"></i> Technical & Programming</h3>
         <ul class="skill-list">
           <li><i class="fab fa-java"></i> Java</li>
+          <li><i class="fab fa-python"></i> Python</li>
           <li><i class="fas fa-code"></i> C++</li>
           <li><i class="fab fa-js"></i> JavaScript</li>
           <li><i class="fas fa-code"></i> JavaFX / FXML</li>
@@ -218,7 +259,6 @@
         <ul class="skill-list">
           <li><i class="fas fa-database"></i> SQL / MySQL / MSSQL / Azure SQL</li>
           <li><i class="fas fa-database"></i> DB Design & DBMS</li>
-          <li><i class="fas fa-upload"></i> Data Loading</li>
           <li><i class="fas fa-sitemap"></i> Backend Architecture</li>
           <li><i class="fas fa-plug"></i> API Integration</li>
           <li><i class="fab fa-git-alt"></i> Git</li>
@@ -226,29 +266,41 @@
       </div>
 
       <div class="skill-group">
-        <h3><i class="fas fa-cloud"></i> Cloud & DevOps</h3>
+        <h3><i class="fas fa-vial"></i> Testing & Quality</h3>
         <ul class="skill-list">
-          <li><i class="fab fa-aws"></i> AWS (Basic)</li>
-          <li><i class="fas fa-cloud"></i> Azure (Basic)</li>
-          <li><i class="fab fa-github"></i> GitHub</li>
-          <li><i class="fas fa-users"></i> Agile / Scrum</li>
-          <li><i class="fas fa-network-wired"></i> Cloud App Logic</li>
+          <li><i class="fas fa-vial"></i> JUnit</li>
+          <li><i class="fas fa-flask"></i> Integration Testing</li>
+          <li><i class="fas fa-paper-plane"></i> Postman (API Testing)</li>
+          <li><i class="fas fa-bug"></i> Debugging</li>
+          <li><i class="fas fa-code-branch"></i> Code Reviews</li>
         </ul>
       </div>
 
       <div class="skill-group">
-        <h3><i class="fas fa-lightbulb"></i> Problem Solving & Soft Skills</h3>
+        <h3><i class="fas fa-cloud"></i> Cloud & DevOps</h3>
         <ul class="skill-list">
-          <li><i class="fas fa-lightbulb"></i> Creative Problem Solving</li>
-          <li><i class="fas fa-user-shield"></i> Team Leadership</li>
-          <li><i class="fas fa-eye"></i> Real-Time Monitoring</li>
-          <li><i class="fas fa-exclamation-circle"></i> Incident Management</li>
-          <li><i class="fas fa-comments"></i> Technical Communication</li>
-          <li><i class="fas fa-headset"></i> Support Management</li>
-          <li><i class="fas fa-video"></i> Surveillance</li>
-          <li><i class="fas fa-tools"></i> System Administration</li>
+          <li><i class="fab fa-github"></i> GitHub</li>
+          <li><i class="fas fa-robot"></i> GitHub Actions (CI/CD)</li>
+          <li><i class="fab fa-docker"></i> Docker</li>
+          <li><i class="fab fa-aws"></i> AWS</li>
+          <li><i class="fas fa-cloud"></i> Azure</li>
+          <li><i class="fas fa-rocket"></i> Deployments</li>
+          <li><i class="fas fa-users"></i> Agile / Scrum</li>
         </ul>
       </div>
+
+      <div class="skill-group">
+        <h3><i class="fas fa-lightbulb"></i> Problem Solving & Collaboration</h3>
+        <ul class="skill-list">
+          <li><i class="fas fa-lightbulb"></i> Problem Solving</li>
+          <li><i class="fas fa-user-shield"></i> Team Leadership</li>
+          <li><i class="fas fa-comments"></i> Technical Communication</li>
+          <li><i class="fas fa-exclamation-circle"></i> Incident Management</li>
+          <li><i class="fas fa-tools"></i> System Administration</li>
+          <li><i class="fas fa-headset"></i> Support Operations</li>
+        </ul>
+      </div>
+
     </section>
   </div>
 
