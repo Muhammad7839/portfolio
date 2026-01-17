@@ -97,9 +97,24 @@
 
     .project span {
       font-size: 0.9rem;
-      color: #888;
+      color: #9aa0a6;
       margin-bottom: 0.8rem;
       display: block;
+    }
+
+    /* Make demo/live links easy to see */
+    .project span a {
+      color: #00d2ff;
+      text-decoration: underline;
+      font-weight: 700;
+      text-underline-offset: 3px;
+      text-decoration-thickness: 2px;
+      text-shadow: 0 0 10px rgba(0, 210, 255, 0.35);
+    }
+
+    .project span a:hover {
+      color: #ffffff;
+      text-shadow: 0 0 14px rgba(0, 210, 255, 0.65);
     }
 
     .project ul {
@@ -171,6 +186,17 @@
       background: #121212;
       color: white;
     }
+
+    /* Keep links visible in light mode too */
+    body.light-mode .project span a {
+      color: #0b5fff;
+      text-shadow: none;
+    }
+
+    body.light-mode .project span a:hover {
+      color: #111;
+      text-shadow: none;
+    }
   </style>
 </head>
 <body>
@@ -198,60 +224,80 @@
       <h2>Projects</h2>
 
       <div class="project">
-        <h3>Cloud-Based Maze Solver</h3>
-        <span>Jan 2025 – Apr 2025 · Farmingdale State College</span>
+        <h3>Planora - Student Task Manager</h3>
+        <span>Java + JavaFX + Firebase Firestore | <a href="https://youtu.be/lPuLvdT11YU?si=gokdtvb0qqLvzCrs" target="_blank">Watch Demo</a></span>
         <ul>
-          <li>Built a JavaFX-based animated maze solver with keyboard navigation and pixel-based detection</li>
-          <li>Designed a tabbed UI and integrated multiple maze types using FXML and Scene Builder</li>
-          <li>Focused on animation effects, object-oriented design, and performance tuning</li>
+          <li>Built a full-stack academic task manager with a JavaFX UI and a Firebase Firestore backend</li>
+          <li>Implemented CRUD workflows, validation, status tracking, and analytics-style progress views</li>
+          <li>Designed a layered architecture (UI, services, repository) to keep the codebase clean and testable</li>
+          <li>Added light/dark mode, structured navigation, and a production-style app flow with login screens</li>
         </ul>
       </div>
 
       <div class="project">
-        <h3>JavaFX Game – 24 Point Card Challenge</h3>
-        <span>Feb 2025 – Mar 2025 · Farmingdale State College | <a href="https://www.youtube.com/watch?v=KOG_xwrZXik" target="_blank">Watch Demo</a></span>
+        <h3>FinTrack - Personal Finance Management App</h3>
+        <span>Spring Boot + JavaFX + SQL | <a href="https://youtu.be/d7Ji9XbgX3I" target="_blank">Watch Demo</a></span>
         <ul>
-          <li>Developed an interactive card game using JavaFX where players create expressions totaling 24</li>
-          <li>Integrated Google Gemini API for real-time AI hints and gameplay enhancement</li>
-          <li>Implemented animations, levels, and polished UI with FXML</li>
+          <li>Developed backend REST APIs and data models to support budgets, transactions, and savings goals</li>
+          <li>Integrated database persistence and backend logic designed for real-world workflows</li>
+          <li>Tested endpoints and flows with Postman and structured debugging to ensure reliability</li>
+          <li>Focused on maintainable backend structure and clear separation between API, service, and data layers</li>
         </ul>
       </div>
 
       <div class="project">
-        <h3>Banking System</h3>
-        <span>Aug 2024 – Oct 2024 · Farmingdale State College | <a href="https://github.com/Muhammad7839/bankingsystem.git" target="_blank">View Code</a></span>
+        <h3>Code Sensei - Kotlin Code Analyzer (Android)</h3>
+        <span>Kotlin + Jetpack Compose | <a href="https://youtu.be/Di1P4Hz05n4" target="_blank">Watch Demo</a></span>
         <ul>
-          <li>Created a secure JavaFX application for deposits, withdrawals, and transfers</li>
-          <li>Included PIN-based authentication, file I/O, and exception handling</li>
-          <li>Focused on usability and real-world transaction simulation</li>
+          <li>Built an Android app that analyzes pasted Kotlin code and explains what’s happening in plain language</li>
+          <li>Flags common beginner mistakes (missing main, mismatched braces, undefined variables) with clear fixes</li>
+          <li>Includes history tracking, settings, and a detail view for step-by-step explanation per issue</li>
+          <li>Designed a clean multi-screen Compose UI with a smooth app flow and splash screen</li>
+        </ul>
+      </div>
+
+      <div class="project">
+        <h3>CS Survival Quiz - Debugging Myths & Tips</h3>
+        <span>Kotlin + Jetpack Compose | <a href="https://youtu.be/TmylB9y1O68" target="_blank">Watch Demo</a></span>
+        <ul>
+          <li>Built a quiz app focused on debugging best practices with login, registration, and input validation</li>
+          <li>Implemented timed gameplay with skip and confirm dialogs, plus results with streaks and performance</li>
+          <li>Saved score history locally using SharedPreferences for persistent progress tracking</li>
+          <li>Designed a consistent UI with cards, backgrounds, and a splash screen transition</li>
+        </ul>
+      </div>
+
+      <div class="project">
+        <h3>TuneTrail - Maze Coding App for Kids</h3>
+        <span>Kotlin + Jetpack Compose</span>
+        <ul>
+          <li>Created a maze-based learning app where kids solve puzzles by building command sequences</li>
+          <li>Implemented drag-and-drop commands, step-by-step execution, and success/failure feedback</li>
+          <li>Logged attempts to a CSV file and generated parent progress reports with chart visualization</li>
+          <li>Built account flows with local storage and designed layouts that scale across devices</li>
+        </ul>
+      </div>
+
+      <div class="project">
+        <h3>Formula24 - Arithmetic Challenge</h3>
+        <span>JavaFX | <a href="https://www.youtube.com/watch?v=KOG_xwrZXik" target="_blank">Watch Demo</a></span>
+        <ul>
+          <li>Developed a JavaFX game where users form valid expressions from four cards to reach 24</li>
+          <li>Integrated an AI hint feature (Gemini API) to guide players without giving away answers</li>
+          <li>Implemented shuffle animations, expression evaluation, and a clean UI built with FXML</li>
         </ul>
       </div>
 
       <div class="project">
         <h3>Event Website Project (Live)</h3>
-        <span>Link: <a href="https://sage-lively-needle-305.vscodeedu.app" target="_blank">Visit Site</a></span>
+        <span>HTML + CSS + JavaScript | <a href="https://sage-lively-needle-305.vscodeedu.app" target="_blank">Visit Live Site</a></span>
         <ul>
-          <li>Built a multi-section HTML/CSS/JavaScript event website with countdown timer and RSVP form</li>
-          <li>Added theme toggle (light/dark) and localStorage persistence</li>
-          <li>Included embedded video and responsive design for all devices</li>
+          <li>Built a responsive multi-section event site with countdown timer, embedded video, and RSVP form</li>
+          <li>Implemented light/dark theme toggle with localStorage persistence</li>
+          <li>Focused on clean layout, readability, and mobile-friendly responsive behavior</li>
         </ul>
       </div>
 
-      <div class="project">
-        <h3>Franchise Simulation</h3>
-        <ul>
-          <li>Simulated McDonald's franchise logic with Java classes for order and process flow</li>
-          <li>Enhanced understanding of backend architecture and team-based programming</li>
-        </ul>
-      </div>
-
-      <div class="project">
-        <h3>Weather Visualization & SQL Design</h3>
-        <ul>
-          <li>Developed a Python-based visualization tool using Turtle graphics to display weather data</li>
-          <li>Designed a relational database in MS SQL Server for structured storage and querying</li>
-        </ul>
-      </div>
     </section>
   </div>
 
