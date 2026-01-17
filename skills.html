@@ -7,31 +7,29 @@
   <link rel="stylesheet" href="assets/css/main.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+
   <style>
     :root {
       --primary: #00d2ff;
       --secondary: #3a47d5;
+
       --bg-dark: #121212;
-      --bg-light: #f1f1f1;
-      --text-dark: #111;
-      --text-light: #fff;
+      --text-light: #ffffff;
+
       --card-dark: #181818;
-      --card-light: #ffffff;
+
       --chip-dark: #202020;
       --chip-dark-hover: #292929;
-      --chip-light: #f4f6f8;
-      --chip-light-hover: #e9eef3;
-      --muted-dark: #ccc;
-      --muted-light: #333;
-      --border-light: #e6e6e6;
+
+      --muted-dark: #cccccc;
     }
 
     body {
       font-family: 'Segoe UI', sans-serif;
       background: var(--bg-dark);
       color: var(--text-light);
-      transition: background 0.4s ease, color 0.4s ease;
     }
+
     #sidebar {
       position: fixed;
       left: 0;
@@ -90,12 +88,14 @@
       background: var(--bg-dark);
       animation: fadeUp 1s ease-out forwards;
     }
+
     section.post {
       background: var(--card-dark);
       padding: 2rem;
       border-radius: 12px;
       box-shadow: 0 0 15px rgba(0,0,0,0.4);
     }
+
     section.post h2 {
       color: var(--primary);
       margin-bottom: 2rem;
@@ -112,6 +112,7 @@
       text-transform: uppercase;
       letter-spacing: 0.5px;
     }
+
     .skill-list {
       list-style: none;
       padding: 0;
@@ -140,9 +141,10 @@
 
     .skill-list li:hover {
       background: var(--chip-dark-hover);
-      color: white;
+      color: #ffffff;
     }
-@keyframes fadeUp {
+
+    @keyframes fadeUp {
       from { opacity: 0; transform: translateY(40px); }
       to { opacity: 1; transform: translateY(0); }
     }
@@ -153,8 +155,8 @@
     }
   </style>
 </head>
-<body>
 
+<body>
 
   <aside id="sidebar">
     <div class="logo">MUHAMMAD<br><span class="last-name">IMRAN</span></div>
@@ -243,7 +245,5 @@
     </section>
   </div>
 
-  <script>
-  </script>
 </body>
 </html>

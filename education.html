@@ -28,7 +28,6 @@
       background: #121212;
       color: white;
       font-family: 'Segoe UI', sans-serif;
-      transition: all 0.4s ease;
     }
 
     #sidebar {
@@ -84,7 +83,6 @@
       border-radius: 12px;
       box-shadow: 0 0 15px rgba(0,0,0,0.4);
       margin-bottom: 2rem;
-      transition: transform 0.3s ease, opacity 0.4s;
       animation: fadeUp 1s ease forwards;
       opacity: 0;
     }
@@ -128,32 +126,6 @@
       font-size: 0.9rem;
     }
 
-    .mode-toggle {
-      position: fixed;
-      top: 20px;
-      right: 30px;
-      background: #fff;
-      color: #000;
-      border: none;
-      border-radius: 50%;
-      width: 40px;
-      height: 40px;
-      cursor: pointer;
-      box-shadow: 0 0 10px rgba(0,0,0,0.3);
-      font-size: 18px;
-      z-index: 1100;
-    }
-
-    body.light-mode {
-      background: #f1f1f1;
-      color: #111;
-    }
-
-    body.light-mode .edu {
-      background: #fff;
-      color: #111;
-    }
-
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(40px); }
       to { opacity: 1; transform: translateY(0); }
@@ -175,9 +147,6 @@
       <li><a href="resume.html">Resume</a></li>
     </ul>
   </aside>
-
-  <!-- Mode Toggle -->
-  <button class="mode-toggle" onclick="toggleMode()"><i class="fas fa-moon"></i></button>
 
   <!-- Main Content -->
   <div id="main">
@@ -208,14 +177,5 @@
     </section>
   </div>
 
-  <!-- Script -->
-  <script>
-    function toggleMode() {
-      document.body.classList.toggle('light-mode');
-      const icon = document.querySelector('.mode-toggle i');
-      icon.classList.toggle('fa-moon');
-      icon.classList.toggle('fa-sun');
-    }
-  </script>
 </body>
 </html>

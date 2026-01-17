@@ -13,22 +13,6 @@
       font-family: 'Segoe UI', sans-serif;
     }
 
-    .mode-toggle {
-      position: fixed;
-      top: 20px;
-      right: 30px;
-      background: #fff;
-      color: #000;
-      border: none;
-      border-radius: 50%;
-      width: 40px;
-      height: 40px;
-      cursor: pointer;
-      box-shadow: 0 0 10px rgba(0,0,0,0.3);
-      font-size: 18px;
-      z-index: 1100;
-    }
-
     #sidebar {
       position: fixed;
       left: 0;
@@ -95,9 +79,8 @@
       padding: 2rem;
       border-radius: 12px;
       box-shadow: 0 0 15px rgba(0,0,0,0.4);
-      animation: fadeUp 1s ease-out;
+      animation: fadeUp 1s ease-out forwards;
       opacity: 0;
-      animation-fill-mode: forwards;
     }
 
     iframe {
@@ -147,9 +130,6 @@
     </ul>
   </aside>
 
-  <!-- Toggle Button -->
-  <button class="mode-toggle" onclick="toggleMode()"><i class="fas fa-moon"></i></button>
-
   <!-- Main Content -->
   <div id="main">
     <section class="resume-section">
@@ -161,13 +141,5 @@
     </section>
   </div>
 
-  <script>
-    function toggleMode() {
-      document.body.classList.toggle('light-mode');
-      const icon = document.querySelector('.mode-toggle i');
-      icon.classList.toggle('fa-moon');
-      icon.classList.toggle('fa-sun');
-    }
-  </script>
 </body>
 </html>
