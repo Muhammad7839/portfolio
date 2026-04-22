@@ -21,7 +21,7 @@
   var introAccentText = introAccent.textContent.trim();
   var introSubtitleText = introSubtitle.textContent.trim();
   var fullName = nameTarget.textContent.trim();
-  var prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var prefersReducedMotion = false;
   var introDelay = 2600;
   var introFadeDuration = prefersReducedMotion ? 0 : 400;
   var typeDelay = prefersReducedMotion ? 0 : 110;

@@ -56,8 +56,8 @@
       "</div>",
       '<div class="site-nav-footer">',
       '  <a class="site-nav-github" href="https://github.com/Muhammad7839" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile" data-url="github.com/Muhammad7839"><i class="fa-brands fa-github" aria-hidden="true"></i></a>',
-      '  <span class="site-nav-badge">Available</span>',
-      '  <p class="site-nav-note">Actively seeking software engineering internships and entry-level roles. Ready to contribute from day one.</p>',
+      '  <span class="site-nav-badge">Interviewing Now</span>',
+      '  <p class="site-nav-note">Open to software engineering internships and entry-level roles across backend, mobile, and full-stack teams.</p>',
       "</div>"
     ].join("");
   }
@@ -96,6 +96,28 @@
 
   document.querySelectorAll("[data-site-nav]").forEach(function(container) {
     container.innerHTML = renderNav(activePage);
+  });
+
+  document.querySelectorAll("a[href]").forEach(function(link) {
+    var href = link.getAttribute("href");
+
+    if (!href || href.charAt(0) === "#" || link.target === "_blank" || link.hasAttribute("download")) {
+      return;
+    }
+
+    var isInternal = !/^https?:/i.test(href);
+
+    if (!isInternal) {
+      return;
+    }
+
+    link.addEventListener("click", function(event) {
+      if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) {
+        return;
+      }
+
+      document.body.classList.add("page-transitioning");
+    });
   });
 
   var body = document.body;

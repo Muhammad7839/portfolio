@@ -353,6 +353,15 @@ body.home-page #main {
   transition: opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
+body.portfolio-page {
+  transition: opacity 0.32s ease, transform 0.32s ease;
+}
+
+body.portfolio-page.page-transitioning {
+  opacity: 0;
+  transform: translateY(12px);
+}
+
 body.portfolio-page #main > * {
   padding: 0;
   margin: 0;
@@ -1323,18 +1332,5 @@ body.home-page.hero-copy-visible .home-shell > :not(.hero-panel) {
 
   .home-intro-title {
     font-size: 1.55rem;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-
-  *,
-  *::before,
-  *::after {
-    animation: none !important;
-    transition: none !important;
   }
 }
