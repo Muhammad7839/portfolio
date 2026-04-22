@@ -1,259 +1,120 @@
-<!DOCTYPE HTML>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <title>Projects - Muhammad Imran</title>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-  <link rel="stylesheet" href="assets/css/main.css" />
+  <title>Projects | Muhammad Imran</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Selected software projects across Java, Spring Boot, JavaFX, Kotlin, and responsive web development.">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/site-shell.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <style>
-    #sidebar .logo {
-      font-size: 1.8rem;
-      font-weight: 900;
-      color: #ffffff;
-      text-transform: uppercase;
-      margin-bottom: 2rem;
-      line-height: 1.2;
-      letter-spacing: 1px;
-    }
-
-    #sidebar .logo .last-name {
-      color: #ffff;
-      font-size: 2.2rem;
-      font-weight: 900;
-    }
-
-    body {
-      background: #121212;
-      color: white;
-      font-family: 'Segoe UI', sans-serif;
-    }
-
-    #sidebar {
-      position: fixed;
-      left: 0;
-      top: 0;
-      height: 100vh;
-      width: 220px;
-      background: #1e1e1e;
-      padding: 2rem 1rem;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      z-index: 1000;
-    }
-
-    #sidebar ul {
-      list-style: none;
-      padding: 0;
-      width: 100%;
-    }
-
-    #sidebar ul li {
-      margin: 1rem 0;
-    }
-
-    #sidebar ul li a {
-      color: white;
-      text-decoration: none;
-      font-size: 1rem;
-      transition: 0.2s;
-    }
-
-    #sidebar ul li a:hover {
-      color: #1e90ff;
-    }
-
-    #main {
-      margin-left: 240px;
-      padding: 4rem 2rem;
-      background: #121212;
-      min-height: 100vh;
-    }
-
-    h2 {
-      color: #00d2ff;
-      margin-bottom: 1rem;
-    }
-
-    .project {
-      background: #181818;
-      padding: 1.5rem;
-      border-radius: 12px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.4);
-      margin-bottom: 2rem;
-      transition: transform 0.3s ease, opacity 0.4s;
-      animation: fadeUp 1s ease forwards;
-      opacity: 0;
-    }
-
-    .project h3 {
-      font-size: 1.25rem;
-      color: #ffffff;
-      margin-bottom: 0.3rem;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    .project span {
-      font-size: 0.9rem;
-      color: #9aa0a6;
-      margin-bottom: 0.8rem;
-      display: block;
-    }
-
-    /* Make demo/live links easy to see */
-    .project span a {
-      color: #00d2ff;
-      text-decoration: underline;
-      font-weight: 700;
-      text-underline-offset: 3px;
-      text-decoration-thickness: 2px;
-      text-shadow: 0 0 10px rgba(0, 210, 255, 0.35);
-    }
-
-    .project span a:hover {
-      color: #ffffff;
-      text-shadow: 0 0 14px rgba(0, 210, 255, 0.65);
-    }
-
-    .project ul {
-      list-style: none;
-      padding-left: 0;
-      margin: 0;
-    }
-
-    .project ul li {
-      margin-bottom: 0.6rem;
-      line-height: 1.6;
-      color: #ddd;
-      position: relative;
-      padding-left: 1.2rem;
-    }
-
-    .project ul li::before {
-      content: "\f058";
-      font-family: "Font Awesome 6 Free";
-      font-weight: 900;
-      position: absolute;
-      left: 0;
-      color: #00d2ff;
-      font-size: 0.9rem;
-    }
-
-    @keyframes fadeUp {
-      from {
-        opacity: 0;
-        transform: translateY(40px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-  </style>
+  <noscript><link rel="stylesheet" href="assets/css/noscript.css"></noscript>
 </head>
-<body>
+<body class="portfolio-page">
+  <div data-site-nav></div>
 
-  <!-- Sidebar -->
-  <aside id="sidebar">
-    <div class="logo">MUHAMMAD<br><span class="last-name">IMRAN</span></div>
-    <ul>
-      <li><a href="about.html">About</a></li>
-      <li><a href="experience.html">Experience</a></li>
-      <li><a href="projects.html">Projects</a></li>
-      <li><a href="skills.html">Skills</a></li>
-      <li><a href="education.html">Education</a></li>
-      <li><a href="contact.html">Contact</a></li>
-      <li><a href="resume.html">Resume</a></li>
-    </ul>
-  </aside>
-
-  <!-- Main Content -->
-  <div id="main">
-    <section class="post">
-      <h2>Projects</h2>
-
-      <div class="project">
-        <h3>Planora - Student Task Manager</h3>
-        <span>Java + JavaFX + Firebase Firestore | <a href="https://youtu.be/lPuLvdT11YU?si=gokdtvb0qqLvzCrs" target="_blank">Watch Demo</a></span>
-        <ul>
-          <li>Built a full-stack academic task manager with a JavaFX UI and a Firebase Firestore backend</li>
-          <li>Implemented CRUD workflows, validation, status tracking, and analytics-style progress views</li>
-          <li>Designed a layered architecture (UI, services, repository) to keep the codebase clean and testable</li>
-          <li>Built structured navigation and a production-style app flow with login screens</li>
-        </ul>
+  <main id="main">
+    <section class="page-shell">
+      <div class="page-heading">
+        <span class="eyebrow">Projects</span>
+        <h1 class="page-title">Selected projects.</h1>
+        <p class="page-lead">Six applications shipped across backend, Android, and web. Each one built around a real architecture decision, not a feature checklist.</p>
       </div>
 
-      <div class="project">
-        <h3>FinTrack - Personal Finance Management App</h3>
-        <span>Spring Boot + JavaFX + SQL | <a href="https://youtu.be/d7Ji9XbgX3I" target="_blank">Watch Demo</a></span>
-        <ul>
-          <li>Developed backend REST APIs and data models to support budgets, transactions, and savings goals</li>
-          <li>Integrated database persistence and backend logic designed for real-world workflows</li>
-          <li>Tested endpoints and flows with Postman and structured debugging to ensure reliability</li>
-          <li>Focused on maintainable backend structure and clear separation between API, service, and data layers</li>
-        </ul>
-      </div>
+      <div class="spotlight-grid">
+        <article class="spotlight-card">
+          <div>
+            <h3>Planora</h3>
+            <p class="card-meta">Java + JavaFX + Firebase Firestore</p>
+          </div>
+          <ul class="check-list">
+            <li>Shipped a full-stack academic task manager with a JavaFX UI, Firebase Firestore backend, and complete CRUD workflow in production-style architecture.</li>
+            <li>Delivered validation, status tracking, and analytics-style progress views with structured navigation and login flow.</li>
+            <li>Designed a layered UI, service, and repository architecture so every feature added after launch stayed testable and clean.</li>
+          </ul>
+          <a class="text-link" href="https://youtu.be/lPuLvdT11YU?si=gokdtvb0qqLvzCrs" target="_blank" rel="noopener noreferrer">Watch demo</a>
+        </article>
 
-      <div class="project">
-        <h3>Code Sensei - Kotlin Code Analyzer (Android)</h3>
-        <span>Kotlin + Jetpack Compose | <a href="https://youtu.be/Di1P4Hz05n4" target="_blank">Watch Demo</a></span>
-        <ul>
-          <li>Built an Android app that analyzes pasted Kotlin code and explains what’s happening in plain language</li>
-          <li>Flags common beginner mistakes (missing main, mismatched braces, undefined variables) with clear fixes</li>
-          <li>Includes history tracking, settings, and a detail view for step-by-step explanation per issue</li>
-          <li>Designed a clean multi-screen Compose UI with a smooth app flow and splash screen</li>
-        </ul>
-      </div>
+        <article class="spotlight-card">
+          <div>
+            <h3>FinTrack</h3>
+            <p class="card-meta">Spring Boot + JavaFX + SQL</p>
+          </div>
+          <ul class="check-list">
+            <li>Designed and shipped backend REST APIs and data models in Spring Boot for budget tracking, transactions, and savings goal management.</li>
+            <li>Integrated full database persistence with clear API, service, and data layer separation throughout the entire backend.</li>
+            <li>Validated every endpoint and data flow with Postman and structured debugging. Nothing was called complete without verification.</li>
+          </ul>
+          <a class="text-link" href="https://youtu.be/d7Ji9XbgX3I" target="_blank" rel="noopener noreferrer">Watch demo</a>
+        </article>
 
-      <div class="project">
-        <h3>CS Survival Quiz - Debugging Myths & Tips</h3>
-        <span>Kotlin + Jetpack Compose | <a href="https://youtu.be/TmylB9y1O68" target="_blank">Watch Demo</a></span>
-        <ul>
-          <li>Built a quiz app focused on debugging best practices with login, registration, and input validation</li>
-          <li>Implemented timed gameplay with skip and confirm dialogs, plus results with streaks and performance</li>
-          <li>Saved score history locally using SharedPreferences for persistent progress tracking</li>
-          <li>Designed a consistent UI with cards, backgrounds, and a splash screen transition</li>
-        </ul>
-      </div>
+        <article class="spotlight-card">
+          <div>
+            <h3>Code Sensei</h3>
+            <p class="card-meta">Kotlin + Jetpack Compose</p>
+          </div>
+          <ul class="check-list">
+            <li>Shipped an Android application in Kotlin and Jetpack Compose that analyzes pasted code and explains issues in plain, actionable language.</li>
+            <li>Detects missing main methods, mismatched braces, and undefined variables with specific fix guidance per issue.</li>
+            <li>Delivered a clean multi-screen Compose UI with history tracking, settings, and a per-issue detail view.</li>
+          </ul>
+          <a class="text-link" href="https://youtu.be/Di1P4Hz05n4" target="_blank" rel="noopener noreferrer">Watch demo</a>
+        </article>
 
-      <div class="project">
-        <h3>TuneTrail - Maze Coding App for Kids</h3>
-        <span>Kotlin + Jetpack Compose</span>
-        <ul>
-          <li>Created a maze-based learning app where kids solve puzzles by building command sequences</li>
-          <li>Implemented drag-and-drop commands, step-by-step execution, and success/failure feedback</li>
-          <li>Logged attempts to a CSV file and generated parent progress reports with chart visualization</li>
-          <li>Built account flows with local storage and designed layouts that scale across devices</li>
-        </ul>
-      </div>
+        <article class="spotlight-card">
+          <div>
+            <h3>CS Survival Quiz</h3>
+            <p class="card-meta">Kotlin + Jetpack Compose</p>
+          </div>
+          <ul class="check-list">
+            <li>Shipped a quiz application with full login, registration, input validation, and timed gameplay in Kotlin and Jetpack Compose.</li>
+            <li>Delivered streak tracking, skip dialogs, results screens, and performance summaries with persistent score history via SharedPreferences.</li>
+            <li>Designed a consistent card-based UI with splash screen transitions and stable behavior across session restarts.</li>
+          </ul>
+          <a class="text-link" href="https://youtu.be/TmylB9y1O68" target="_blank" rel="noopener noreferrer">Watch demo</a>
+        </article>
 
-      <div class="project">
-        <h3>Formula24 - Arithmetic Challenge</h3>
-        <span>JavaFX | <a href="https://www.youtube.com/watch?v=KOG_xwrZXik" target="_blank">Watch Demo</a></span>
-        <ul>
-          <li>Developed a JavaFX game where users form valid expressions from four cards to reach 24</li>
-          <li>Integrated an AI hint feature (Gemini API) to guide players without giving away answers</li>
-          <li>Implemented shuffle animations, expression evaluation, and a clean UI built with FXML</li>
-        </ul>
-      </div>
+        <article class="spotlight-card">
+          <div>
+            <h3>TuneTrail</h3>
+            <p class="card-meta">Kotlin + Jetpack Compose</p>
+          </div>
+          <ul class="check-list">
+            <li>Shipped a maze-based coding learning application where children build command sequences to solve navigation puzzles.</li>
+            <li>Implemented drag-and-drop command assembly, step-by-step execution engine, and immediate pass or fail feedback per attempt.</li>
+            <li>Generated parent-facing progress reports from logged attempt data with chart visualization built in.</li>
+          </ul>
+        </article>
 
-      <div class="project">
-        <h3>Event Website Project (Live)</h3>
-        <span>HTML + CSS + JavaScript | <a href="https://sage-lively-needle-305.vscodeedu.app" target="_blank">Visit Live Site</a></span>
-        <ul>
-          <li>Built a responsive multi-section event site with countdown timer, embedded video, and RSVP form</li>
-          <li>Implemented a theme toggle with localStorage persistence</li>
-          <li>Focused on clean layout, readability, and mobile-friendly responsive behavior</li>
-        </ul>
-      </div>
+        <article class="spotlight-card">
+          <div>
+            <h3>Formula24</h3>
+            <p class="card-meta">JavaFX</p>
+          </div>
+          <ul class="check-list">
+            <li>Shipped a JavaFX card game where players construct valid mathematical expressions from four cards to reach exactly 24.</li>
+            <li>Built an AI hint system that guides players toward solutions without revealing the answer directly.</li>
+            <li>Implemented shuffle animations, expression evaluation logic, and a clean FXML layout that handles all game states.</li>
+          </ul>
+          <a class="text-link" href="https://www.youtube.com/watch?v=KOG_xwrZXik" target="_blank" rel="noopener noreferrer">Watch demo</a>
+        </article>
 
+        <article class="spotlight-card">
+          <div>
+            <h3>Event Website Project</h3>
+            <p class="card-meta">HTML + CSS + JavaScript</p>
+          </div>
+          <ul class="check-list">
+            <li>Shipped a responsive multi-section event site with a working countdown timer, embedded video, and RSVP form.</li>
+            <li>Implemented a theme toggle with localStorage persistence and verified consistent behavior across all major screen sizes.</li>
+            <li>Structured the entire codebase around semantic HTML, readable CSS, and mobile-first responsive layout from the start.</li>
+          </ul>
+          <a class="text-link" href="https://sage-lively-needle-305.vscodeedu.app" target="_blank" rel="noopener noreferrer">Visit live site</a>
+        </article>
+      </div>
     </section>
-  </div>
+  </main>
 
-  <script>
-  </script>
-
+  <script src="assets/js/site-nav.js"></script>
 </body>
 </html>

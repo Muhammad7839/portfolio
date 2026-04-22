@@ -1,249 +1,88 @@
-<!DOCTYPE HTML>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <title>Skills - Muhammad Imran</title>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-  <link rel="stylesheet" href="assets/css/main.css" />
+  <title>Skills | Muhammad Imran</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Core software engineering skills in debugging, architecture review, backend and frontend delivery, and release-oriented verification.">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/site-shell.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-
-  <style>
-    :root {
-      --primary: #00d2ff;
-      --secondary: #3a47d5;
-
-      --bg-dark: #121212;
-      --text-light: #ffffff;
-
-      --card-dark: #181818;
-
-      --chip-dark: #202020;
-      --chip-dark-hover: #292929;
-
-      --muted-dark: #cccccc;
-    }
-
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background: var(--bg-dark);
-      color: var(--text-light);
-    }
-
-    #sidebar {
-      position: fixed;
-      left: 0;
-      top: 0;
-      height: 100vh;
-      width: 220px;
-      background: #1e1e1e;
-      padding: 2rem 1rem;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      z-index: 1000;
-    }
-
-    #sidebar .logo {
-      font-size: 1.8rem;
-      font-weight: 900;
-      color: #ffffff;
-      text-transform: uppercase;
-      margin-bottom: 2rem;
-      line-height: 1.2;
-      letter-spacing: 1px;
-    }
-
-    #sidebar .logo .last-name {
-      color: var(--primary);
-      font-size: 2.2rem;
-      font-weight: 900;
-    }
-
-    #sidebar ul {
-      list-style: none;
-      padding: 0;
-      width: 100%;
-    }
-
-    #sidebar ul li {
-      margin: 1rem 0;
-    }
-
-    #sidebar ul li a {
-      color: white;
-      text-decoration: none;
-      font-size: 1rem;
-      transition: 0.2s;
-    }
-
-    #sidebar ul li a:hover {
-      color: #1e90ff;
-    }
-
-    #main {
-      margin-left: 240px;
-      padding: 4rem 2rem;
-      min-height: 100vh;
-      background: var(--bg-dark);
-      animation: fadeUp 1s ease-out forwards;
-    }
-
-    section.post {
-      background: var(--card-dark);
-      padding: 2rem;
-      border-radius: 12px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.4);
-    }
-
-    section.post h2 {
-      color: var(--primary);
-      margin-bottom: 2rem;
-    }
-
-    .skill-group {
-      margin-bottom: 2rem;
-    }
-
-    .skill-group h3 {
-      color: var(--primary);
-      margin-bottom: 1rem;
-      font-size: 1.1rem;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    .skill-list {
-      list-style: none;
-      padding: 0;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
-
-    .skill-list li {
-      background: var(--chip-dark);
-      padding: 0.6rem 1rem;
-      border-radius: 8px;
-      color: var(--muted-dark);
-      font-size: 0.95rem;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      transition: all 0.2s ease;
-      border: 1px solid transparent;
-    }
-
-    .skill-list li i {
-      color: var(--primary);
-      font-size: 1rem;
-    }
-
-    .skill-list li:hover {
-      background: var(--chip-dark-hover);
-      color: #ffffff;
-    }
-
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(40px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @media(max-width: 768px) {
-      #sidebar { display: none; }
-      #main { margin-left: 0; padding: 2rem 1rem; }
-    }
-  </style>
+  <noscript><link rel="stylesheet" href="assets/css/noscript.css"></noscript>
 </head>
+<body class="portfolio-page">
+  <div data-site-nav></div>
 
-<body>
-
-  <aside id="sidebar">
-    <div class="logo">MUHAMMAD<br><span class="last-name">IMRAN</span></div>
-    <ul>
-      <li><a href="about.html">About</a></li>
-      <li><a href="experience.html">Experience</a></li>
-      <li><a href="projects.html">Projects</a></li>
-      <li><a href="skills.html">Skills</a></li>
-      <li><a href="education.html">Education</a></li>
-      <li><a href="contact.html">Contact</a></li>
-      <li><a href="resume.html">Resume</a></li>
-    </ul>
-  </aside>
-
-  <div id="main">
-    <section class="post">
-      <h2>Skills</h2>
-
-      <div class="skill-group">
-        <h3><i class="fas fa-code"></i> Technical & Programming</h3>
-        <ul class="skill-list">
-          <li><i class="fab fa-java"></i> Java</li>
-          <li><i class="fab fa-python"></i> Python</li>
-          <li><i class="fas fa-code"></i> C++</li>
-          <li><i class="fab fa-js"></i> JavaScript</li>
-          <li><i class="fas fa-code"></i> JavaFX / FXML</li>
-          <li><i class="fas fa-drafting-compass"></i> UI Design / Scene Builder</li>
-          <li><i class="fas fa-leaf"></i> Spring Boot</li>
-          <li><i class="fas fa-share-alt"></i> REST APIs</li>
-          <li><i class="fas fa-cogs"></i> Object-Oriented Design</li>
-          <li><i class="fab fa-html5"></i> HTML / CSS</li>
-          <li><i class="fas fa-code"></i> DOM / Responsive Design</li>
-          <li><i class="fas fa-file-code"></i> File I/O</li>
-          <li><i class="fas fa-exclamation-triangle"></i> Exception Handling</li>
-          <li><i class="fas fa-lock"></i> Secure Authentication</li>
-        </ul>
+  <main id="main">
+    <section class="page-shell">
+      <div class="page-heading">
+        <span class="eyebrow">Skills</span>
+        <h1 class="page-title">What I bring to a team.</h1>
+        <p class="page-lead">The stack I have shipped with across two internships, six applications, and production environments.</p>
+        <p class="section-copy">Every tool on this page has been used in a shipped product or a live production environment. Not a tutorial. Not a course exercise.</p>
       </div>
 
-      <div class="skill-group">
-        <h3><i class="fas fa-database"></i> Database & Backend</h3>
-        <ul class="skill-list">
-          <li><i class="fas fa-database"></i> SQL / MySQL / MSSQL / Azure SQL</li>
-          <li><i class="fas fa-database"></i> DB Design & DBMS</li>
-          <li><i class="fas fa-sitemap"></i> Backend Architecture</li>
-          <li><i class="fas fa-plug"></i> API Integration</li>
-          <li><i class="fab fa-git-alt"></i> Git</li>
-        </ul>
-      </div>
+      <div class="skill-grid">
+        <article class="skill-card">
+          <h3><i class="fas fa-code" aria-hidden="true"></i> Core Languages</h3>
+          <ul class="pill-list">
+            <li><i class="fab fa-java" aria-hidden="true"></i>Java</li>
+            <li><i class="fab fa-python" aria-hidden="true"></i>Python</li>
+            <li><i class="fas fa-code" aria-hidden="true"></i>C++</li>
+            <li><i class="fab fa-js" aria-hidden="true"></i>JavaScript</li>
+            <li><i class="fas fa-mobile-screen-button" aria-hidden="true"></i>Kotlin</li>
+            <li><i class="fab fa-html5" aria-hidden="true"></i>HTML</li>
+            <li><i class="fab fa-css3-alt" aria-hidden="true"></i>CSS</li>
+            <li><i class="fas fa-terminal" aria-hidden="true"></i>Bash</li>
+          </ul>
+        </article>
 
-      <div class="skill-group">
-        <h3><i class="fas fa-vial"></i> Testing & Quality</h3>
-        <ul class="skill-list">
-          <li><i class="fas fa-vial"></i> JUnit</li>
-          <li><i class="fas fa-flask"></i> Integration Testing</li>
-          <li><i class="fas fa-paper-plane"></i> Postman (API Testing)</li>
-          <li><i class="fas fa-bug"></i> Debugging</li>
-          <li><i class="fas fa-code-branch"></i> Code Reviews</li>
-        </ul>
-      </div>
+        <article class="skill-card">
+          <h3><i class="fas fa-layer-group" aria-hidden="true"></i> Frameworks and Backend</h3>
+          <ul class="pill-list">
+            <li><i class="fab fa-java" aria-hidden="true"></i>Spring Boot</li>
+            <li><i class="fas fa-flask" aria-hidden="true"></i>Flask</li>
+            <li><i class="fas fa-server" aria-hidden="true"></i>Django</li>
+            <li><i class="fab fa-node-js" aria-hidden="true"></i>Node.js</li>
+            <li><i class="fas fa-plug" aria-hidden="true"></i>REST APIs</li>
+            <li><i class="fas fa-desktop" aria-hidden="true"></i>JavaFX</li>
+            <li><i class="fas fa-mobile-alt" aria-hidden="true"></i>Jetpack Compose</li>
+            <li><i class="fas fa-fire" aria-hidden="true"></i>Firebase</li>
+            <li><i class="fas fa-diagram-project" aria-hidden="true"></i>BLoC</li>
+          </ul>
+        </article>
 
-      <div class="skill-group">
-        <h3><i class="fas fa-cloud"></i> Cloud & DevOps</h3>
-        <ul class="skill-list">
-          <li><i class="fab fa-github"></i> GitHub</li>
-          <li><i class="fas fa-robot"></i> GitHub Actions (CI/CD)</li>
-          <li><i class="fab fa-docker"></i> Docker</li>
-          <li><i class="fab fa-aws"></i> AWS</li>
-          <li><i class="fas fa-cloud"></i> Azure</li>
-          <li><i class="fas fa-rocket"></i> Deployments</li>
-          <li><i class="fas fa-users"></i> Agile / Scrum</li>
-        </ul>
-      </div>
+        <article class="skill-card">
+          <h3><i class="fas fa-database" aria-hidden="true"></i> Databases and Tools</h3>
+          <ul class="pill-list">
+            <li><i class="fas fa-database" aria-hidden="true"></i>MySQL</li>
+            <li><i class="fas fa-database" aria-hidden="true"></i>PostgreSQL</li>
+            <li><i class="fas fa-leaf" aria-hidden="true"></i>MongoDB</li>
+            <li><i class="fab fa-git-alt" aria-hidden="true"></i>Git</li>
+            <li><i class="fab fa-docker" aria-hidden="true"></i>Docker</li>
+            <li><i class="fab fa-github" aria-hidden="true"></i>GitHub Actions</li>
+            <li><i class="fab fa-aws" aria-hidden="true"></i>AWS</li>
+            <li><i class="fab fa-microsoft" aria-hidden="true"></i>Azure</li>
+          </ul>
+        </article>
 
-      <div class="skill-group">
-        <h3><i class="fas fa-lightbulb"></i> Problem Solving & Collaboration</h3>
-        <ul class="skill-list">
-          <li><i class="fas fa-lightbulb"></i> Problem Solving</li>
-          <li><i class="fas fa-user-shield"></i> Team Leadership</li>
-          <li><i class="fas fa-comments"></i> Technical Communication</li>
-          <li><i class="fas fa-exclamation-circle"></i> Incident Management</li>
-          <li><i class="fas fa-tools"></i> System Administration</li>
-          <li><i class="fas fa-headset"></i> Support Operations</li>
-        </ul>
+        <article class="skill-card">
+          <h3><i class="fas fa-vial" aria-hidden="true"></i> Testing and Delivery</h3>
+          <ul class="pill-list">
+            <li><i class="fas fa-vial" aria-hidden="true"></i>JUnit</li>
+            <li><i class="fas fa-paper-plane" aria-hidden="true"></i>Postman</li>
+            <li><i class="fas fa-network-wired" aria-hidden="true"></i>Integration Testing</li>
+            <li><i class="fas fa-bug" aria-hidden="true"></i>Debugging</li>
+            <li><i class="fas fa-people-group" aria-hidden="true"></i>Agile</li>
+            <li><i class="fas fa-users" aria-hidden="true"></i>Scrum</li>
+            <li><i class="fas fa-rocket" aria-hidden="true"></i>CI/CD</li>
+            <li><i class="fas fa-code-branch" aria-hidden="true"></i>Code Reviews</li>
+          </ul>
+        </article>
       </div>
-
     </section>
-  </div>
+  </main>
 
+  <script src="assets/js/site-nav.js"></script>
 </body>
 </html>

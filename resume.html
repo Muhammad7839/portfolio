@@ -1,145 +1,38 @@
-<!DOCTYPE HTML>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <title>Resume - Muhammad Imran</title>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-  <link rel="stylesheet" href="assets/css/main.css" />
+  <title>Resume | Muhammad Imran</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="View or download the latest resume for Muhammad Imran.">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/site-shell.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <style>
-    body {
-      background: #121212;
-      color: white;
-      font-family: 'Segoe UI', sans-serif;
-    }
-
-    #sidebar {
-      position: fixed;
-      left: 0;
-      top: 0;
-      height: 100vh;
-      width: 220px;
-      background: #1e1e1e;
-      padding: 2rem 1rem;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      z-index: 1000;
-    }
-
-    #sidebar .logo {
-      font-size: 1.8rem;
-      font-weight: 900;
-      color: #ffffff;
-      text-transform: uppercase;
-      margin-bottom: 2rem;
-      line-height: 1.2;
-      letter-spacing: 1px;
-    }
-
-    #sidebar .logo .last-name {
-      color: #ffffff;
-      font-size: 2.2rem;
-      font-weight: 900;
-    }
-
-    #sidebar ul {
-      list-style: none;
-      padding: 0;
-      width: 100%;
-    }
-
-    #sidebar ul li {
-      margin: 1rem 0;
-    }
-
-    #sidebar ul li a {
-      color: white;
-      text-decoration: none;
-      font-size: 1rem;
-      transition: 0.2s;
-    }
-
-    #sidebar ul li a:hover {
-      color: #1e90ff;
-    }
-
-    #main {
-      margin-left: 240px;
-      padding: 4rem 2rem;
-      background: #121212;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-    }
-
-    .resume-section {
-      background: #181818;
-      padding: 2rem;
-      border-radius: 12px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.4);
-      animation: fadeUp 1s ease-out forwards;
-      opacity: 0;
-    }
-
-    iframe {
-      width: 100%;
-      height: 720px;
-      border: none;
-      border-radius: 12px;
-      margin-top: 1rem;
-    }
-
-    .download-btn {
-      display: inline-block;
-      margin-top: 1.5rem;
-      background: #00d2ff;
-      color: black;
-      padding: 0.7rem 1.5rem;
-      border-radius: 30px;
-      font-weight: bold;
-      text-decoration: none;
-      transition: 0.3s;
-    }
-
-    .download-btn:hover {
-      background: #3a47d5;
-      color: white;
-    }
-
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-  </style>
+  <noscript><link rel="stylesheet" href="assets/css/noscript.css"></noscript>
 </head>
-<body>
+<body class="portfolio-page">
+  <div data-site-nav></div>
 
-  <!-- Sidebar -->
-  <aside id="sidebar">
-    <div class="logo">MUHAMMAD<br><span class="last-name">IMRAN</span></div>
-    <ul>
-      <li><a href="about.html">About</a></li>
-      <li><a href="experience.html">Experience</a></li>
-      <li><a href="projects.html">Projects</a></li>
-      <li><a href="skills.html">Skills</a></li>
-      <li><a href="education.html">Education</a></li>
-      <li><a href="contact.html">Contact</a></li>
-      <li><a href="resume.html">Resume</a></li>
-    </ul>
-  </aside>
+  <main id="main">
+    <section class="page-shell">
+      <div class="page-heading">
+        <span class="eyebrow">Resume</span>
+        <h1 class="page-title">Resume.</h1>
+        <p class="page-lead">View the full PDF here or download it directly if you want the fastest version for review.</p>
+      </div>
 
-  <!-- Main Content -->
-  <div id="main">
-    <section class="resume-section">
-      <h2 style="color: #00d2ff; margin-bottom: 1rem;">Resume</h2>
-      <iframe src="assets/resume.pdf"></iframe>
-      <a href="assets/resume.pdf" class="download-btn" download>
-        <i class="fas fa-download"></i> Download Resume
-      </a>
+      <article class="resume-card">
+        <div class="button-row">
+          <a href="assets/resume.pdf" class="button-link" download><i class="fas fa-download" aria-hidden="true"></i>Download Resume</a>
+          <a href="assets/resume.pdf" class="button-link-secondary" target="_blank" rel="noopener noreferrer"><i class="fas fa-up-right-from-square" aria-hidden="true"></i>Open PDF in New Tab</a>
+        </div>
+        <object class="resume-frame" data="assets/resume.pdf" type="application/pdf" aria-label="Muhammad Imran resume PDF">
+          <p class="section-note">If the embedded preview does not load in your browser, use the buttons above to open or download the PDF directly.</p>
+        </object>
+      </article>
     </section>
-  </div>
+  </main>
 
+  <script src="assets/js/site-nav.js"></script>
 </body>
 </html>

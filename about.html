@@ -1,161 +1,60 @@
-<!DOCTYPE HTML>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <title>About - Muhammad Imran</title>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-  <link rel="stylesheet" href="assets/css/main.css" />
+  <title>About | Muhammad Imran</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Learn how Muhammad Imran approaches debugging, architecture, and production-minded software delivery.">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/site-shell.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <style>
-    body { background: #121212; color: white; font-family: 'Segoe UI', sans-serif; }
-
-    #sidebar {
-      position: fixed;
-      left: 0; top: 0;
-      height: 100vh;
-      width: 220px;
-      background: #1e1e1e;
-      padding: 2rem 1rem;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      z-index: 1000;
-    }
-
-    #sidebar ul {
-      list-style: none;
-      padding: 0;
-      width: 100%;
-    }
-
-    #sidebar ul li {
-      margin: 1rem 0;
-    }
-
-    #sidebar ul li a {
-      color: white;
-      text-decoration: none;
-      font-size: 1rem;
-      transition: 0.2s;
-    }
-
-    #sidebar ul li a:hover {
-      color: #1e90ff;
-    }
-
-    #main {
-      margin-left: 240px;
-      padding: 4rem 2rem;
-      background: #121212;
-      min-height: 100vh;
-    }
-
-    h2 {
-      color: #00d2ff;
-      margin-bottom: 1.5rem;
-      font-size: 2rem;
-      letter-spacing: 0.5px;
-    }
-
-    .about-box {
-      background: linear-gradient(135deg, #1a1a1a, #202020);
-      padding: 2.5rem;
-      border-radius: 16px;
-      box-shadow: 0 0 25px rgba(0, 210, 255, 0.15);
-      animation: fadeUp 1s ease-out forwards;
-      opacity: 0;
-    }
-
-    .about-box h3 {
-      color: #00d2ff;
-      margin-bottom: 0.8rem;
-      font-size: 1.4rem;
-    }
-
-    .about-box p {
-      font-size: 1.1rem;
-      line-height: 1.7;
-      color: #ddd;
-      margin-bottom: 1.3rem;
-    }
-
-    .about-box ul {
-      padding-left: 1.2rem;
-      list-style: none;
-    }
-
-    .about-box ul li::before {
-      content: "\f058";
-      font-family: "Font Awesome 6 Free";
-      font-weight: 900;
-      color: #00d2ff;
-      margin-right: 0.6rem;
-    }
-
-    .about-box ul li {
-      margin-bottom: 0.6rem;
-      color: #ccc;
-    }
-
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-  </style>
+  <noscript><link rel="stylesheet" href="assets/css/noscript.css"></noscript>
 </head>
-<body>
+<body class="portfolio-page">
+  <div data-site-nav></div>
 
-  <!-- Sidebar -->
-  <aside id="sidebar">
-    <ul>
-      <li><a href="about.html">About</a></li>
-      <li><a href="experience.html">Experience</a></li>
-      <li><a href="projects.html">Projects</a></li>
-      <li><a href="skills.html">Skills</a></li>
-      <li><a href="education.html">Education</a></li>
-      <li><a href="contact.html">Contact</a></li>
-      <li><a href="resume.html">Resume</a></li>
-    </ul>
-  </aside>
-
-  <!-- Main Content -->
-  <div id="main">
-    <section class="post">
-      <h2>About Me</h2>
-      <div class="about-box">
-
-        <h3>Who I Am</h3>
-        <p>
-          I’m a software engineer who builds with intent. I focus on clarity, structure, and long-term reliability, and I take ownership of the systems I work on. My goal is to build software that holds up under real-world use.
-        </p>
-
-        <h3>Engineering Experience</h3>
-        <p>
-          I’ve built software across backend, frontend, and application layers, including backend services with Java and Spring Boot, interactive JavaFX applications, and full-stack web solutions. My work spans API design, business logic, data integration, and system-level decision-making.
-        </p>
-
-        <h3>How I Work</h3>
-        <p>
-          I think before I build. I break problems down, reason through trade-offs, and design systems that are easy to understand and extend. I value clean architecture, readable code, and engineering decisions made with purpose.
-        </p>
-
-        <h3>Tech Stack</h3>
-        <ul>
-          <li>Languages: Python, Java, C++, JavaScript, HTML, CSS, Bash</li>
-          <li>Databases: MySQL, PostgreSQL, MongoDB</li>
-          <li>Frameworks: Spring Boot, Flask, Django, Node.js</li>
-          <li>Libraries: NumPy, Pandas, OpenCV</li>
-          <li>Tools: Git, Docker, AWS, Azure, GCP, Heroku, Jira</li>
-        </ul>
-
-        <h3>What Drives Me</h3>
-        <p>
-          I care about building software people can trust. That means writing clear, secure code, holding myself accountable, and delivering systems that reflect a high standard of quality and responsibility.
-        </p>
-
+  <main id="main">
+    <section class="page-shell">
+      <div class="page-heading">
+        <span class="eyebrow">About</span>
+        <h1 class="page-title">What I build and how I work.</h1>
+        <p class="page-lead">Two internships. Six shipped applications. One consistent standard: software that holds up after the deadline passes. I think through architecture before writing a line, and I verify the result before calling anything done.</p>
       </div>
-    </section>
-  </div>
 
+      <article class="content-panel section-stack">
+        <section class="section-block">
+          <h3>Who I Am</h3>
+          <p>My strongest work lives where implementation depth, debugging precision, and system design judgment meet. I have shipped backend services, mobile apps, and web products across real team environments. I do not just make things run. I make them stay running.</p>
+        </section>
+
+        <section class="section-block">
+          <h3>Engineering Capabilities</h3>
+          <ul class="check-list">
+            <li>Traced and resolved production failures in live backend systems by isolating root cause before touching code.</li>
+            <li>Reviewed architecture for risk during active development, not after release problems surfaced.</li>
+            <li>Shipped features end to end across REST APIs, mobile UI, and data layers while keeping every layer readable and stable.</li>
+            <li>Worked from scoped plans in agile sprint environments, not ad hoc decisions. Every change reviewed before it merged.</li>
+          </ul>
+        </section>
+
+        <section class="section-block">
+          <h3>Selected Stack</h3>
+          <ul class="check-list">
+            <li>Languages: Python, Java, JavaScript, Kotlin, C++, HTML, CSS, Bash</li>
+            <li>Backend and data: Spring Boot, Flask, Django, REST APIs, MySQL, PostgreSQL, MongoDB</li>
+            <li>Frontend and mobile: JavaFX, Jetpack Compose, responsive web UI, DOM-driven interactions</li>
+            <li>Delivery tools: Git, GitHub, Docker, AWS, Azure, CI/CD workflows</li>
+          </ul>
+        </section>
+
+        <section class="section-block">
+          <h3>What Drives My Work</h3>
+          <p>Production software that people can trust does not happen by accident. It comes from engineers who own their work past the merge, design for the person maintaining it next, and verify the result before calling it done. That is the standard I hold myself to.</p>
+        </section>
+      </article>
+    </section>
+  </main>
+
+  <script src="assets/js/site-nav.js"></script>
 </body>
 </html>

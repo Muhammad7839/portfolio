@@ -3,278 +3,196 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Muhammad Imran | Portfolio</title>
+  <meta name="description" content="Muhammad Imran builds reliable software with strong debugging, architecture, and end-to-end delivery discipline.">
+  <title>Muhammad Imran | Software Engineer</title>
   <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/site-shell.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script src="assets/js/home-intro.js" defer></script>
   <noscript><link rel="stylesheet" href="assets/css/noscript.css"></noscript>
-  <style>
-    :root {
-      --primary: #00d2ff;
-      --secondary: #3a47d5;
-      --bg-dark: #0f0f0f;
-      --text-light: #fff;
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background: var(--bg-dark);
-      color: var(--text-light);
-      transition: all 0.4s ease;
-    }
-
-    /* Splash */
-    #splash {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: linear-gradient(135deg, #000000, #0f0f0f);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 9999;
-      animation: fadeIn 1.5s ease-in-out forwards;
-      opacity: 1;
-    }
-
-    /* Fade-out effect */
-    #splash.fade-out {
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.9s ease;
-    }
-
-    .popup-content {
-      text-align: center;
-      background: rgba(0, 0, 0, 0.6);
-      padding: 4rem 3rem;
-      border-radius: 20px;
-      box-shadow: 0 0 30px rgba(0, 210, 255, 0.3);
-      animation: pulseBox 2.5s infinite;
-    }
-
-    .popup-content h1 {
-      font-size: 2.5rem;
-      margin-bottom: 2rem;
-      font-weight: 800;
-      color: #e0e0e0;
-      text-shadow: 0 0 10px #00d2ff;
-      letter-spacing: 1.2px;
-    }
-
-    .hidden { display: none; }
-
-    /* Sidebar */
-    #sidebar {
-      position: fixed;
-      left: 0;
-      top: 0;
-      height: 100vh;
-      width: 220px;
-      background: #1e1e1e;
-      padding: 2rem 1rem;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      z-index: 1000;
-    }
-
-    #sidebar .logo {
-      display: none;
-    }
-
-    #sidebar ul {
-      list-style: none;
-      padding: 0;
-      width: 100%;
-    }
-
-    #sidebar ul li {
-      margin: 1rem 0;
-    }
-
-    #sidebar ul li a {
-      color: white;
-      text-decoration: none;
-      font-size: 1rem;
-      transition: 0.2s;
-    }
-
-    #sidebar ul li a:hover {
-      color: #1e90ff;
-    }
-
-    .hero-container {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      max-width: 1200px;
-      height: 90vh;
-      margin-left: 240px;
-      padding: 2rem;
-    }
-
-    .hero-left {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: 1rem;
-      animation: fadeInLeft 1.5s ease-out;
-    }
-
-    .hero-left h2 {
-      font-size: 1rem;
-      color: #bbb;
-      letter-spacing: 1px;
-    }
-
-    #typing-name {
-      font-size: 3rem;
-      font-weight: 800;
-      background: linear-gradient(to right, var(--primary), var(--secondary));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      white-space: nowrap;
-      border-right: 3px solid var(--primary);
-      overflow: hidden;
-      min-height: 1.2em;
-    }
-
-    .hero-left p {
-      font-size: 1.2rem;
-      max-width: 90%;
-      color: #ccc;
-    }
-
-    .hero-right {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .hero-right img {
-      width: 80%;
-      height: auto;
-      border-radius: 16px;
-      box-shadow: 0 0 40px rgba(0, 0, 0, 0.6);
-    }
-
-    @keyframes pulseBox {
-      0% { box-shadow: 0 0 30px rgba(0, 210, 255, 0.3); }
-      50% { box-shadow: 0 0 45px rgba(0, 210, 255, 0.6); }
-      100% { box-shadow: 0 0 30px rgba(0, 210, 255, 0.3); }
-    }
-
-    @keyframes fadeInLeft {
-      from { opacity: 0; transform: translateX(-40px); }
-      to { opacity: 1; transform: translateX(0); }
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @media(max-width: 768px) {
-      .hero-container {
-        flex-direction: column;
-        height: auto;
-        padding: 2rem 1rem;
-        margin-left: 0;
-      }
-
-      .hero-right img {
-        width: 85%;
-      }
-
-      #sidebar {
-        display: none;
-      }
-    }
-  </style>
 </head>
-<body>
-
-  <div id="splash">
-    <div class="popup-content">
-      <h1>Building Real Software, Beyond Just Projects</h1>
+<body class="portfolio-page home-page">
+  <div class="home-intro" id="home-intro" aria-hidden="true">
+    <div class="home-intro-panel">
+      <p class="home-intro-title"><span class="home-intro-title-primary">BUILT TO SHIP.</span> <span class="home-intro-title-accent">DESIGNED TO LAST.</span></p>
+      <p class="home-intro-subtitle">Clarity. Structure. Purpose.</p>
     </div>
   </div>
 
-  <aside id="sidebar">
-    <ul>
-      <li><a href="about.html">About</a></li>
-      <li><a href="experience.html">Experience</a></li>
-      <li><a href="projects.html">Projects</a></li>
-      <li><a href="skills.html">Skills</a></li>
-      <li><a href="education.html">Education</a></li>
-      <li><a href="contact.html">Contact</a></li>
-      <li><a href="resume.html">Resume</a></li>
-    </ul>
-  </aside>
+  <div data-site-nav></div>
 
-  <div class="hero-container hidden" id="hero-section">
-    <div class="hero-left">
-      <h2>Focused on building things that matter</h2>
-      <h1 id="typing-name"></h1>
-      <p>Clarity. Structure. Purpose.</p>
+  <main id="main">
+    <div class="home-shell">
+      <section class="hero-panel">
+        <div class="hero-copy">
+          <p class="hero-nameplate" aria-label="Muhammad Imran">
+            <span class="hero-name-text" data-typewriter-target>Muhammad Imran</span><span class="hero-name-cursor" aria-hidden="true"></span>
+          </p>
+
+          <div class="hero-copy-body" data-hero-copy-body>
+            <span class="eyebrow">Software Engineer</span>
+            <h1 class="hero-title">Production code across every layer.<span>Backend. Mobile. Web. No gaps.</span></h1>
+            <p class="hero-lead">Java, Kotlin, and Python across production environments. Clean architecture, real debugging, and delivery that holds up after the sprint ends.</p>
+            <div class="hero-actions">
+              <a class="button-link" href="projects.html"><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>View Selected Work</a>
+              <a class="button-link-secondary" href="assets/resume.pdf" download><i class="fa-solid fa-file-arrow-down" aria-hidden="true"></i>Download Resume</a>
+              <a class="button-link-secondary" href="contact.html"><i class="fa-solid fa-paper-plane" aria-hidden="true"></i>Contact Me</a>
+            </div>
+            <div class="hero-proof">
+              <article class="info-card">
+                <strong>Current work</strong>
+                <span>Shipping Java backend features and REST APIs at Shop Online New York in live sprint cycles with direct CTO collaboration.</span>
+              </article>
+              <article class="info-card">
+                <strong>Best fit</strong>
+                <span>Engineering teams that care about system quality, code ownership, and engineers who fix root causes instead of symptoms.</span>
+              </article>
+              <article class="info-card">
+                <strong>Open to</strong>
+                <span>Full-time engineering roles and senior internships where production impact is the standard and the bar is high.</span>
+              </article>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="hero-frame">
+            <img class="hero-image" src="images/recent.jpeg" alt="Portrait of Muhammad Imran">
+          </div>
+        </div>
+      </section>
+
+      <section class="quick-grid">
+        <article class="quick-card">
+          <strong>Diagnose</strong>
+          <p>Find the actual failure path. Ship the smallest fix that solves it completely. Verify the result before closing it.</p>
+        </article>
+        <article class="quick-card">
+          <strong>Architect</strong>
+          <p>Design with clear boundaries so every new feature is easier to add than the previous one.</p>
+        </article>
+        <article class="quick-card">
+          <strong>Deliver</strong>
+          <p>Ship across UI, API, and data without losing readability, stability, or team confidence.</p>
+        </article>
+      </section>
+
+      <section class="page-shell">
+        <div class="page-heading">
+          <h2 class="divider-title">Selected Work</h2>
+          <p class="section-copy">Six applications built for real use cases, not demos. Architecture decisions documented. Every one shipped.</p>
+        </div>
+
+        <div class="spotlight-grid">
+          <article class="spotlight-card">
+            <div>
+              <h3>Planora</h3>
+              <p class="card-meta">Java + JavaFX + Firebase Firestore</p>
+            </div>
+            <ul class="check-list">
+              <li>Shipped a full-stack task manager with JavaFX, Firebase Firestore, and complete CRUD workflows.</li>
+              <li>Designed layered UI, service, and repository boundaries so each feature stayed testable and maintainable after launch.</li>
+            </ul>
+            <div class="inline-links">
+              <a class="text-link" href="https://youtu.be/lPuLvdT11YU?si=gokdtvb0qqLvzCrs" target="_blank" rel="noopener noreferrer">Watch demo</a>
+              <a class="text-link" href="projects.html">See project details</a>
+            </div>
+          </article>
+
+          <article class="spotlight-card">
+            <div>
+              <h3>FinTrack</h3>
+              <p class="card-meta">Spring Boot + JavaFX + SQL</p>
+            </div>
+            <ul class="check-list">
+              <li>Designed and shipped Spring Boot APIs and data models for budget tracking, transactions, and savings goals.</li>
+              <li>Integrated persistence across API, service, and data layers with Postman verification on every endpoint.</li>
+            </ul>
+            <div class="inline-links">
+              <a class="text-link" href="https://youtu.be/d7Ji9XbgX3I" target="_blank" rel="noopener noreferrer">Watch demo</a>
+              <a class="text-link" href="projects.html">See project details</a>
+            </div>
+          </article>
+
+          <article class="spotlight-card">
+            <div>
+              <h3>Code Sensei</h3>
+              <p class="card-meta">Kotlin + Jetpack Compose</p>
+            </div>
+            <ul class="check-list">
+              <li>Shipped a Kotlin and Jetpack Compose Android app that analyzes pasted code and explains issues with specific fix guidance.</li>
+              <li>Delivered multi-screen navigation with history tracking, settings, and a per-issue detail view.</li>
+            </ul>
+            <div class="inline-links">
+              <a class="text-link" href="https://youtu.be/Di1P4Hz05n4" target="_blank" rel="noopener noreferrer">Watch demo</a>
+              <a class="text-link" href="projects.html">See project details</a>
+            </div>
+          </article>
+
+          <article class="spotlight-card">
+            <div>
+              <h3>How I Work</h3>
+              <p class="card-meta">The simplest way to read this portfolio</p>
+            </div>
+            <ul class="check-list">
+              <li>Start with the affected layer, prove what is happening, then make the smallest safe fix.</li>
+              <li>Prefer maintainable systems over clever one-offs and verify the result before calling it done.</li>
+            </ul>
+            <div class="inline-links">
+              <a class="text-link" href="about.html">Read more about my workflow</a>
+              <a class="text-link" href="resume.html">Open resume</a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="page-shell">
+        <div class="page-heading">
+          <h2 class="divider-title">Experience</h2>
+          <p class="section-copy">Two internships at the same company, promoted from mobile to backend. Real teams, real sprints, real ownership.</p>
+        </div>
+
+        <div class="timeline-grid">
+          <article class="timeline-card">
+            <h3>Java Developer Intern</h3>
+            <p class="timeline-meta">Shop Online New York · Aug 2025 to Present</p>
+            <ul class="check-list">
+              <li>Shipping 10 plus REST APIs in Java for core business workflows and internal product tools.</li>
+              <li>Collaborating directly with the CTO and tech leads in agile sprint cycles through scoped deliverables and code reviews.</li>
+            </ul>
+          </article>
+
+          <article class="timeline-card">
+            <h3>Flutter Developer Intern</h3>
+            <p class="timeline-meta">Shop Online New York · May 2025 to Aug 2025</p>
+            <ul class="check-list">
+              <li>Shipped a cross-platform mobile application to iOS and Android using Flutter, Firebase, REST APIs, and BLoC architecture.</li>
+              <li>Stabilized release builds through Xcode and Android Studio with validated behavior across both platforms.</li>
+            </ul>
+          </article>
+
+          <article class="timeline-card">
+            <h3>AI4ALL Ignite Fellow</h3>
+            <p class="timeline-meta">AI4ALL · May 2025 to Oct 2025</p>
+            <ul class="check-list">
+              <li>Designed and delivered a complete machine learning pipeline from raw data through cleaning, feature engineering, modeling, and evaluation.</li>
+              <li>Presented final results with clear metrics, honest trade-offs, and reproducible experiment organization to a technical panel.</li>
+            </ul>
+          </article>
+
+          <article class="timeline-card">
+            <h3>Open to New Work</h3>
+            <p class="timeline-meta">Internships and entry-level software engineering opportunities</p>
+            <ul class="check-list">
+              <li>Full-time engineering roles and senior internships where production impact is the standard and the bar is high.</li>
+              <li>Best aligned with teams that care about system quality, code ownership, and engineers who fix root causes instead of symptoms.</li>
+            </ul>
+          </article>
+        </div>
+      </section>
     </div>
-    <div class="hero-right">
-      <img src="images/recent.jpeg" alt="Muhammad Imran">
-    </div>
-  </div>
+  </main>
 
-  <script>
-    window.addEventListener("load", () => {
-      setTimeout(() => {
-        const splash = document.getElementById('splash');
-        if (!splash || splash.style.display === 'none') return;
-
-        splash.classList.add('fade-out');
-        setTimeout(() => enterSite(), 900);
-      }, 1300);
-    });
-
-    function enterSite() {
-      const splash = document.getElementById('splash');
-      const hero = document.getElementById('hero-section');
-
-      if (splash) splash.style.display = 'none';
-      if (hero) {
-        hero.classList.remove('hidden');
-        hero.style.display = 'flex';
-      }
-
-      startTyping();
-    }
-
-    function startTyping() {
-      const text = "Muhammad Imran";
-      const target = document.getElementById("typing-name");
-      let i = 0;
-
-      if (!target) return;
-      target.textContent = "";
-
-      function typeLetter() {
-        if (i < text.length) {
-          target.textContent += text.charAt(i);
-          i++;
-          setTimeout(typeLetter, 150);
-        }
-      }
-
-      typeLetter();
-    }
-  </script>
+  <script src="assets/js/site-nav.js"></script>
 </body>
 </html>
