@@ -54,6 +54,7 @@ const skillsHtml = fs.readFileSync(path.join(root, 'skills.html'), 'utf8');
 [
   'Core Languages',
   'Frameworks and Backend',
+  'AI and ML',
   'Databases and Tools',
   'Testing and Delivery'
 ].forEach((section) => {
