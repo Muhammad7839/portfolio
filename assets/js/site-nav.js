@@ -56,8 +56,8 @@
       "</div>",
       '<div class="site-nav-footer">',
       '  <a class="site-nav-github" href="https://github.com/Muhammad7839" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile" data-url="github.com/Muhammad7839"><i class="fa-brands fa-github" aria-hidden="true"></i></a>',
-      '  <span class="site-nav-badge">Open to Full-Time Roles</span>',
-      '  <p class="site-nav-note">May 2026 CS graduate. Available for full-time software engineering roles across backend, full-stack, and mobile.</p>',
+      '  <span class="site-nav-badge">BRdata Software Solutions</span>',
+      '  <p class="site-nav-note">Software Support Technician supporting enterprise grocery retail and wholesale systems across client-facing modules, QA, documentation, and implementation workflows.</p>',
       "</div>"
     ].join("");
   }
