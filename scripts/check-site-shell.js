@@ -451,8 +451,10 @@ assert(/\*::before[\s\S]{0,120}animation-duration: 0\.001ms !important/.test(atm
 /* Smoothness: the hero name reveal must be a continuous wipe (no choppy
    steps()), and cross-page navigation should use native view transitions. */
 const smoothCss = read('assets/css/site-shell.css');
-assert(smoothCss.includes('.hero-name-text') && /animation: heroNameType 0\.62s cubic-bezier/.test(smoothCss), 'hero name should reveal with a smooth cubic-bezier wipe');
+assert(smoothCss.includes('.hero-name-text') && /animation: heroNameType 2\.5s /.test(smoothCss), 'hero name should reveal with a slow, smooth wipe (~2.5s)');
 assert(!/heroNameType[^;]*steps\(/.test(smoothCss), 'hero name reveal should not use choppy steps()');
+const countJs = read('assets/js/site-motion.js');
+assert(/var duration = 2500/.test(countJs), 'count-up should animate over ~2.5s to match the name reveal');
 assert(/@view-transition\s*\{[\s\S]{0,60}navigation:\s*auto/.test(smoothCss), 'pages should opt into native cross-document view transitions');
 assert(/@media \(prefers-reduced-motion: reduce\)[\s\S]*::view-transition-old\(root\)[\s\S]*animation: none !important/.test(smoothCss), 'view transitions should be disabled under reduced motion');
 const navSmoothJs = read('assets/js/site-nav.js');

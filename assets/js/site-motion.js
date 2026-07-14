@@ -35,7 +35,7 @@
     var target = parseInt(element.dataset.count, 10);
     var suffix = element.dataset.countSuffix || "";
     var start = 0;
-    var duration = 900;
+    var duration = 2500;
 
     if (isNaN(target)) return;
 
