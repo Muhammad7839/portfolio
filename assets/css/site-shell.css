@@ -2913,3 +2913,42 @@ body.command-open {
   border-color: rgba(140, 241, 213, 0.78);
   transform: translateY(-1px);
 }
+
+/* === Mobile atmosphere ==============================================
+   Phones can't show the pointer parallax or the rocket cursor, and the
+   canvas starfield reads faint on a small bright screen. This layer gives
+   every phone visitor real depth WITHOUT depending on any device setting:
+   the gradients are static (not "motion"), so they show even under Reduce
+   Motion — the page never looks empty. A slow drift is layered on top for
+   visitors who allow motion; the global reduced-motion rule above freezes
+   that drift automatically for anyone who asked for calm. Scoped to touch /
+   small screens, so the approved desktop layout is byte-for-byte unchanged. */
+@media (max-width: 768px), (pointer: coarse) {
+  body::before {
+    content: "";
+    position: fixed;
+    inset: -12%;
+    z-index: 0; /* same band as the galaxy canvas: behind content, never over text */
+    pointer-events: none;
+    background:
+      radial-gradient(38% 30% at 20% 16%, rgba(125, 249, 208, 0.12), transparent 70%),
+      radial-gradient(44% 34% at 84% 24%, rgba(86, 181, 255, 0.11), transparent 72%),
+      radial-gradient(66% 50% at 50% 92%, rgba(150, 130, 255, 0.09), transparent 76%);
+    animation: mobileNebulaDrift 30s ease-in-out infinite alternate;
+  }
+
+  /* The scroll-reveal already runs on mobile — just make the fade + rise
+     large enough to actually notice as you scroll on a phone. */
+  .has-js .reveal-pending {
+    transform: translateY(30px) scale(0.974);
+  }
+}
+
+@keyframes mobileNebulaDrift {
+  from {
+    transform: translate3d(-1.5%, -1%, 0) scale(1.03);
+  }
+  to {
+    transform: translate3d(1.5%, 1.2%, 0) scale(1.09);
+  }
+}

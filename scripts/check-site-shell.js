@@ -436,6 +436,18 @@ const pillCss = read('assets/css/site-shell.css');
 assert(pillCss.includes('.spotlight-card .text-link'), 'site-shell.css should style the project pill buttons');
 assert(pillCss.includes('content: "↗"'), 'project pill buttons should carry the external-link glyph');
 
+/* Mobile atmosphere: static depth for every phone visitor (setting-independent),
+   gentle drift only for those who allow motion, scoped away from desktop. */
+const atmosphereCss = read('assets/css/site-shell.css');
+assert(atmosphereCss.includes('@keyframes mobileNebulaDrift'), 'mobile atmosphere should define the nebula drift keyframes');
+assert(/@media \(max-width: 768px\), \(pointer: coarse\)/.test(atmosphereCss), 'mobile atmosphere should target touch / small screens only');
+assert(/body::before[\s\S]{0,400}radial-gradient/.test(atmosphereCss), 'mobile atmosphere should paint a static gradient nebula that shows regardless of motion settings');
+assert(atmosphereCss.includes('translateY(30px) scale(0.974)'), 'scroll-reveal should be strengthened on small screens');
+/* The reduced-motion contract must remain: all reveal motion forced off, and
+   ::before animations (incl. the nebula drift) neutralised for calm. */
+assert(/@media \(prefers-reduced-motion: reduce\)[\s\S]*\.reveal-visible[\s\S]*transform: none !important/.test(atmosphereCss), 'reduced-motion should still force reveals static');
+assert(/\*::before[\s\S]{0,120}animation-duration: 0\.001ms !important/.test(atmosphereCss), 'reduced-motion should freeze ::before animations including the nebula drift');
+
 if (failures > 0) {
   process.exit(1);
 }
