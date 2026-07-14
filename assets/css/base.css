@@ -1,0 +1,72 @@
+/* Minimal reset for the static portfolio. */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  line-height: 1;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+ol,
+dl,
+dd {
+  margin: 0;
+}
+
+ul,
+ol {
+  padding: 0;
+}
+
+main,
+section,
+article,
+aside,
+nav,
+header,
+footer {
+  display: block;
+}
+
+img,
+picture,
+svg,
+canvas,
+video {
+  max-width: 100%;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button {
+  margin: 0;
+}
+
+[hidden] {
+  display: none !important;
+}

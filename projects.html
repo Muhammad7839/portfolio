@@ -4,16 +4,35 @@
   <title>Projects | Muhammad Imran</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="darkreader-lock">
+  <meta name="theme-color" content="#050506">
   <meta name="description" content="Selected software projects across Java, Spring Boot, JavaFX, Kotlin, and responsive web development.">
-  <link rel="stylesheet" href="assets/css/main.css">
-  <link rel="stylesheet" href="assets/css/site-shell.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <noscript><link rel="stylesheet" href="assets/css/noscript.css"></noscript>
+  <meta name="author" content="Muhammad Imran">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Projects | Muhammad Imran">
+  <meta property="og:description" content="Open-source, AI, backend, mobile, and full-stack engineering work with clear roles, architecture, and evidence.">
+  <meta property="og:url" content="https://muhammad7839.github.io/portfolio/projects.html">
+  <meta property="og:image" content="https://muhammad7839.github.io/portfolio/images/social-preview.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://muhammad7839.github.io/portfolio/images/social-preview.png">
+  <link rel="canonical" href="https://muhammad7839.github.io/portfolio/projects.html">
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+  <link rel="preload" href="assets/webfonts/instrument-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/webfonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="stylesheet" href="assets/css/base.css?v=20260713g">
+  <link rel="stylesheet" href="assets/css/site-shell.css?v=20260713g">
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" as="style" integrity="sha512-Avb2QiuDEEvB4bZJYdft2mNjVShBftLdPG8FJ0V7irTLQ8Uo0qcPxh4Plq7G5tGm0rU+1SPhVotteLpBERwTkw==" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-Avb2QiuDEEvB4bZJYdft2mNjVShBftLdPG8FJ0V7irTLQ8Uo0qcPxh4Plq7G5tGm0rU+1SPhVotteLpBERwTkw==" crossorigin="anonymous"></noscript>
+  <noscript><link rel="stylesheet" href="assets/css/noscript.css?v=20260713g"></noscript>
 </head>
 <body class="portfolio-page">
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <noscript><nav class="noscript-nav" aria-label="Basic navigation"><a href="index.html">Home</a><a href="projects.html">Projects</a><a href="experience.html">Experience</a><a href="skills.html">Skills</a><a href="resume.html">Resume</a><a href="contact.html">Contact</a></nav></noscript>
   <div data-site-nav></div>
 
-  <main id="main">
+  <main id="main" tabindex="-1">
     <section class="page-shell">
       <div class="page-heading">
         <span class="eyebrow">Projects</span>
@@ -21,23 +40,38 @@
         <p class="page-lead">Production software across backend, Android, web, and enterprise open-source. Real architecture decisions. Every one shipped.</p>
       </div>
 
-      <div class="spotlight-grid">
-        <article class="spotlight-card">
+      <section class="constellation" aria-label="Project star map">
+        <p class="constellation-caption"><span class="constellation-dot"></span>Each star is a project — click any one to see its full details below.</p>
+        <div data-constellation></div>
+      </section>
+
+      <div class="spotlight-grid" data-reveal>
+        <article class="spotlight-card" id="zowe">
           <div>
             <h3>Zowe Client Java SDK — LFX Mentorship</h3>
             <p class="card-meta">Java, REST API, Maven, Linux Foundation · May 2026 to Present · Linux Foundation Open Source</p>
           </div>
+          <dl class="project-facts">
+            <div><dt>Role</dt><dd>Linux Foundation LFX Mentee</dd></div>
+            <div><dt>Built</dt><dd>11 z/OSMF workflow API operations</dd></div>
+            <div><dt>Verified</dt><dd>Open-source review and Maven delivery</dd></div>
+          </dl>
           <ul class="check-list">
             <li>Selected for the Linux Foundation LFX Mentorship to contribute production Java code to the open-source Zowe SDK, which provides programmatic access to IBM z/OS mainframes powering global financial, healthcare, and government systems</li>
             <li>Implementing 11 SDK methods for the complete z/OSMF Workflow REST API lifecycle, enabling enterprise developers to automate mainframe operations using modern Java and Maven pipelines</li>
           </ul>
         </article>
 
-        <article class="spotlight-card">
+        <article class="spotlight-card" id="fitgpt">
           <div>
             <h3>FitGPT — AI Wardrobe Assistant</h3>
             <p class="card-meta">FastAPI, React, PostgreSQL, Kotlin, Groq API, OpenWeather API · February 2026 to May 2026</p>
           </div>
+          <dl class="project-facts">
+            <div><dt>Role</dt><dd>Backend Developer across 3 Agile sprints</dd></div>
+            <div><dt>Built</dt><dd>12+ features across API, auth, weather, and trip planning</dd></div>
+            <div><dt>Verified</dt><dd>185+ pytest tests, full CI, live product, and public repository</dd></div>
+          </dl>
           <ul class="check-list">
             <li>Owned backend development as team Backend Developer, building a FastAPI and PostgreSQL service with JWT auth, Google OAuth, and weather-driven outfit planning via OpenWeather API for 175 plus active wardrobe items</li>
             <li>Shipped 12 plus features across 3 Agile sprints with 185 plus pytest tests and full GitHub Actions CI, covering seasonal rotation, duplicate detection, and trip packing</li>
@@ -48,18 +82,22 @@
           </div>
         </article>
 
-        <article class="spotlight-card">
+        <article class="spotlight-card" id="solarshare">
           <div>
             <h3>SolarShare — Solar Energy Marketplace</h3>
             <p class="card-meta">FastAPI, Next.js, TypeScript, Python · January 2025 to Present · 1st Place, 2025 PSEGLI Innovation Challenge</p>
           </div>
+          <dl class="project-facts">
+            <div><dt>Role</dt><dd>Co-Founder and Full-Stack Developer</dd></div>
+            <div><dt>Built</dt><dd>3-role RBAC and a 4-stage billing lifecycle</dd></div>
+            <div><dt>Verified</dt><dd>1st place among 15 teams and a public repository</dd></div>
+          </dl>
           <ul class="check-list">
             <li>Won 1st place among 15 teams at the 2025 PSEGLI Innovation Challenge by conceiving SolarShare on the spot and pitching in under 4 minutes, then competed against 44 university teams at the 2026 National Hult Prize in Boston</li>
             <li>Built a full-stack solar energy marketplace with payment rails, 3-role RBAC, and 4-stage billing lifecycle for real-time consumer-to-solar-farm energy transactions</li>
             <li>Engineered a 12-month seasonality savings model with rollover logic and a utility rate refresh pipeline across 3 plus NY utility regions</li>
           </ul>
           <div class="inline-links">
-            <a class="text-link" href="https://solar-share-green.vercel.app" target="_blank" rel="noopener noreferrer">Visit live app</a>
             <a class="text-link" href="https://github.com/Muhammad7839/SolarShare" target="_blank" rel="noopener noreferrer">View on GitHub</a>
           </div>
         </article>
@@ -69,12 +107,20 @@
             <h3>StockVision — AI Stock Forecasting</h3>
             <p class="card-meta">React, Python, Prophet, ARIMA · June 2025 to August 2025 · AI4ALL Ignite Certified</p>
           </div>
+          <dl class="project-facts">
+            <div><dt>Role</dt><dd>AI4ALL Ignite Fellow</dd></div>
+            <div><dt>Built</dt><dd>Prophet and ARIMA pipeline with a React results dashboard</dd></div>
+            <div><dt>Verified</dt><dd>AI4ALL certification, measured evaluation, and technical-panel presentation</dd></div>
+          </dl>
           <ul class="check-list">
             <li>Earned AI4ALL Ignite program certification by implementing Prophet and ARIMA models on 3 plus years of Kaggle data, improving short-term prediction accuracy by 15 percent over baseline</li>
             <li>Built a React dashboard with dynamic visualizations presented to 50 plus mentors, attracting 100 plus demo users at the program showcase</li>
           </ul>
         </article>
 
+        <details class="more-projects">
+          <summary>More projects — 7 additional builds</summary>
+          <div class="spotlight-grid">
         <article class="spotlight-card">
           <div>
             <h3>Planora</h3>
@@ -162,12 +208,27 @@
             <li>Implemented a theme toggle with localStorage persistence and verified consistent behavior across all major screen sizes.</li>
             <li>Structured the entire codebase around semantic HTML, readable CSS, and mobile-first responsive layout from the start.</li>
           </ul>
-          <a class="text-link" href="https://sage-lively-needle-305.vscodeedu.app" target="_blank" rel="noopener noreferrer">Visit live site</a>
+          <span class="project-status">Archived classroom deployment no longer available</span>
         </article>
+          </div>
+        </details>
       </div>
+
+      <section class="github-live" aria-label="Live GitHub activity" data-reveal>
+        <div data-github class="gh-panel"></div>
+      </section>
     </section>
   </main>
 
-  <script src="assets/js/site-nav.js"></script>
+  <script src="assets/js/site-nav.js?v=20260713g" defer></script>
+  <script src="assets/js/site-command.js?v=20260713g" defer></script>
+  <script src="assets/js/site-constellation.js?v=20260713g" defer></script>
+  <script src="assets/js/site-github.js?v=20260713g" defer></script>
+  <script src="assets/js/site-galaxy.js?v=20260713g" defer></script>
+  <script src="assets/vendor/lenis/lenis.min.js" defer></script>
+  <script src="assets/js/site-scroll.js?v=20260713g" defer></script>
+  <script src="assets/js/site-motion.js?v=20260713g" defer></script>
+  <script src="assets/js/site-cursor.js?v=20260713g" defer></script>
+  <script src="assets/js/site-explore.js?v=20260713g" defer></script>
 </body>
 </html>

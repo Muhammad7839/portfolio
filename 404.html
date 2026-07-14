@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="darkreader-lock">
+  <meta name="theme-color" content="#050506">
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%23050506'/%3E%3Cpath d='M32 8 43 35l-7-3-4 24-4-24-7 3L32 8Z' fill='%238cf1d5'/%3E%3C/svg%3E">
+  <title>404 — Route Not Found | Muhammad Imran</title>
+  <style>
+    :root { color-scheme: dark; --accent: #8cf1d5; --text: #f7fbff; --muted: #b8c0ce; }
+    * { box-sizing: border-box; }
+    html { min-height: 100%; background: #000; }
+    body {
+      min-height: 100vh; margin: 0; padding: clamp(1rem, 4vw, 3rem); overflow-x: hidden;
+      background:
+        radial-gradient(circle at 75% 16%, rgba(255,255,255,.08), transparent 25%),
+        radial-gradient(circle at 18% 70%, rgba(255,255,255,.05), transparent 28%),
+        #020203;
+      color: var(--text); font-family: "Courier New", monospace;
+    }
+    main { position: relative; z-index: 1; width: min(980px, 100%); margin: 0 auto; }
+    .panel {
+      padding: clamp(1.25rem, 4vw, 3rem); border: 1px solid rgba(255,255,255,.15);
+      border-radius: 24px; background: rgba(5,6,8,.9); box-shadow: 0 30px 100px rgba(0,0,0,.55);
+    }
+    .eyebrow { color: var(--accent); font-size: .78rem; font-weight: 700; letter-spacing: .17em; text-transform: uppercase; }
+    h1 { max-width: 13ch; margin: .8rem 0; font-family: Arial, sans-serif; font-size: clamp(2.8rem, 8vw, 6.6rem); letter-spacing: -.06em; line-height: .9; }
+    .lead { max-width: 62ch; color: var(--muted); font-family: Arial, sans-serif; font-size: 1.05rem; line-height: 1.7; }
+    nav { display: flex; flex-wrap: wrap; gap: .75rem; margin: 1.4rem 0 2rem; }
+    nav a, button {
+      min-height: 44px; padding: .75rem 1rem; border: 1px solid rgba(255,255,255,.16); border-radius: 999px;
+      background: rgba(255,255,255,.05); color: var(--text); font: 700 .9rem Arial, sans-serif;
+      text-decoration: none; cursor: pointer;
+    }
+    nav a:first-child, #start { border-color: transparent; background: linear-gradient(135deg, var(--accent), #dce5ff); color: #030405; }
+    nav a:hover, nav a:focus-visible, button:hover, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+    .diagnostics { padding-top: 1.4rem; border-top: 1px solid rgba(255,255,255,.1); }
+    .diagnostics-head { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 1rem; }
+    h2 { margin: .3rem 0; font-size: 1.25rem; }
+    .status { color: var(--muted); font-size: .83rem; }
+    .controls { display: flex; flex-wrap: wrap; gap: .65rem; }
+    canvas { display: block; width: 100%; height: auto; margin-top: 1rem; border: 1px solid rgba(255,255,255,.14); border-radius: 14px; background: #020304; touch-action: manipulation; }
+    .instructions { margin: .75rem 0 0; color: var(--muted); font-size: .8rem; line-height: 1.55; }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="panel">
+      <span class="eyebrow">System diagnostics</span>
+      <h1>404 — route not found.</h1>
+      <p class="lead">This coordinate is outside the mapped portfolio. Return to a known route, or run a short flight diagnostic before continuing.</p>
+
+      <nav aria-label="Recovery links">
+        <a href="/portfolio/" data-route="">Return Home</a>
+        <a href="/portfolio/projects.html" data-route="projects.html">Projects</a>
+        <a href="/portfolio/resume.html" data-route="resume.html">Resume</a>
+        <a href="/portfolio/contact.html" data-route="contact.html">Contact</a>
+      </nav>
+
+      <section class="diagnostics" aria-labelledby="game-title">
+        <div class="diagnostics-head">
+          <div>
+            <span class="eyebrow">Optional deep lane</span>
+            <h2 id="game-title">Asteroid route diagnostic</h2>
+            <div class="status" id="status" aria-live="polite">Ready · score 0</div>
+          </div>
+          <div class="controls">
+            <button id="start" type="button">Start flight</button>
+            <button id="pause" type="button" disabled>Pause</button>
+          </div>
+        </div>
+        <canvas id="game" width="840" height="260" aria-label="A small spaceship game. Press Space or Arrow Up to fly over asteroids."></canvas>
+        <p class="instructions">Press Space or Arrow Up, or tap the game, to boost the ship. The portfolio links above always work without playing.</p>
+      </section>
+    </section>
+  </main>
+
+  <script>
+    (function() {
+      var githubProjectSite = window.location.hostname.endsWith("github.io");
+      var firstSegment = window.location.pathname.split("/").filter(Boolean)[0];
+      var basePath = githubProjectSite && firstSegment ? "/" + firstSegment + "/" : "/";
+      document.querySelectorAll("[data-route]").forEach(function(link) {
+        link.href = basePath + link.dataset.route;
+      });
+
+      var canvas = document.getElementById("game");
+      var context = canvas.getContext("2d");
+      var startButton = document.getElementById("start");
+      var pauseButton = document.getElementById("pause");
+      var status = document.getElementById("status");
+      var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      var ship = { x: 110, y: 125, velocity: 0, radius: 13 };
+      var asteroids = [];
+      var stars = [];
+      var running = false;
+      var score = 0;
+      var lastTime = 0;
+      var spawnTimer = 0;
+      var frame;
+
+      for (var i = 0; i < 80; i += 1) {
+        stars.push({ x: Math.random() * canvas.width, y: Math.random() * canvas.height, size: Math.random() * 1.4 + .3, speed: Math.random() * 18 + 8 });
+      }
+
+      function reset() {
+        ship.y = canvas.height / 2;
+        ship.velocity = 0;
+        asteroids = [];
+        score = 0;
+        spawnTimer = 0;
+        status.textContent = "Ready · score 0";
+        draw();
+      }
+
+      function drawShip() {
+        context.save();
+        context.translate(ship.x, ship.y);
+        context.rotate(Math.max(-.35, Math.min(.35, ship.velocity * .04)));
+        context.fillStyle = "#fff";
+        context.beginPath();
+        context.moveTo(22, 0);
+        context.lineTo(-14, -12);
+        context.lineTo(-7, 0);
+        context.lineTo(-14, 12);
+        context.closePath();
+        context.fill();
+        context.fillStyle = "#8cf1d5";
+        context.beginPath(); context.arc(3, 0, 4, 0, Math.PI * 2); context.fill();
+        context.strokeStyle = "rgba(140,241,213,.7)"; context.lineWidth = 4;
+        context.beginPath(); context.moveTo(-10, 0); context.lineTo(-28, 0); context.stroke();
+        context.restore();
+      }
+
+      function draw() {
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        context.fillStyle = "#020304"; context.fillRect(0, 0, canvas.width, canvas.height);
+        stars.forEach(function(star) {
+          context.globalAlpha = .35 + star.size / 3;
+          context.fillStyle = "#fff";
+          context.beginPath(); context.arc(star.x, star.y, star.size, 0, Math.PI * 2); context.fill();
+        });
+        context.globalAlpha = 1;
+        asteroids.forEach(function(asteroid) {
+          context.strokeStyle = "rgba(255,255,255,.8)"; context.lineWidth = 2;
+          context.fillStyle = "rgba(255,255,255,.08)";
+          context.beginPath(); context.arc(asteroid.x, asteroid.y, asteroid.radius, 0, Math.PI * 2); context.fill(); context.stroke();
+        });
+        drawShip();
+        context.fillStyle = "rgba(255,255,255,.7)"; context.font = "14px Courier New";
+        context.fillText("SCORE " + Math.floor(score), 20, 26);
+      }
+
+      function collides(asteroid) {
+        var dx = ship.x - asteroid.x;
+        var dy = ship.y - asteroid.y;
+        return Math.sqrt(dx * dx + dy * dy) < ship.radius + asteroid.radius - 4;
+      }
+
+      function stop(message) {
+        running = false;
+        window.cancelAnimationFrame(frame);
+        pauseButton.disabled = true;
+        startButton.textContent = "Restart flight";
+        status.textContent = message + " · score " + Math.floor(score);
+      }
+
+      function update(time) {
+        if (!running) return;
+        var delta = Math.min((time - lastTime) / 1000 || 0, .034);
+        lastTime = time;
+        spawnTimer += delta;
+        score += delta * 10;
+        ship.velocity += 42 * delta;
+        ship.y += ship.velocity;
+
+        stars.forEach(function(star) {
+          star.x -= star.speed * delta;
+          if (star.x < 0) star.x = canvas.width;
+        });
+
+        if (spawnTimer > Math.max(.72, 1.35 - score / 180)) {
+          spawnTimer = 0;
+          asteroids.push({ x: canvas.width + 30, y: 25 + Math.random() * (canvas.height - 50), radius: 12 + Math.random() * 15, speed: 175 + Math.random() * 55 });
+        }
+
+        asteroids.forEach(function(asteroid) { asteroid.x -= asteroid.speed * delta; });
+        asteroids = asteroids.filter(function(asteroid) { return asteroid.x > -50; });
+
+        if (ship.y < 12 || ship.y > canvas.height - 12 || asteroids.some(collides)) {
+          draw();
+          stop("Diagnostic interrupted");
+          return;
+        }
+
+        status.textContent = "Flight active · score " + Math.floor(score);
+        draw();
+        frame = window.requestAnimationFrame(update);
+      }
+
+      function boost(event) {
+        if (event) event.preventDefault();
+        if (!running) return;
+        ship.velocity = -5.8;
+      }
+
+      function start() {
+        if (reduceMotion) {
+          status.textContent = "Motion disabled by your system preference";
+          return;
+        }
+        reset();
+        running = true;
+        lastTime = performance.now();
+        startButton.textContent = "Restart flight";
+        pauseButton.disabled = false;
+        frame = window.requestAnimationFrame(update);
+      }
+
+      startButton.addEventListener("click", start);
+      pauseButton.addEventListener("click", function() {
+        if (running) {
+          running = false;
+          window.cancelAnimationFrame(frame);
+          pauseButton.textContent = "Resume";
+          status.textContent = "Paused · score " + Math.floor(score);
+        } else {
+          running = true;
+          lastTime = performance.now();
+          pauseButton.textContent = "Pause";
+          frame = window.requestAnimationFrame(update);
+        }
+      });
+      canvas.addEventListener("pointerdown", boost);
+      window.addEventListener("keydown", function(event) {
+        if (event.code === "Space" || event.code === "ArrowUp") boost(event);
+      });
+      document.addEventListener("visibilitychange", function() {
+        if (document.hidden && running) {
+          running = false;
+          window.cancelAnimationFrame(frame);
+          pauseButton.textContent = "Resume";
+          status.textContent = "Paused while tab is hidden · score " + Math.floor(score);
+        }
+      });
+
+      if (reduceMotion) {
+        startButton.disabled = true;
+        pauseButton.disabled = true;
+        status.textContent = "Static diagnostics · motion disabled by system preference";
+      }
+      reset();
+    })();
+  </script>
+</body>
+</html>

@@ -1,25 +1,37 @@
 {
-  "name": "portfolio",
-  "version": "1.0.0",
-  "description": "Massively by HTML5 UP\r html5up.net | @ajlkn\r Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)",
-  "main": "index.js",
+  "name": "muhammad-imran-portfolio",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Recruiter-first software engineering portfolio for Muhammad Imran, covering enterprise support, open source, full-stack products, mobile development, and applied AI.",
   "scripts": {
     "test": "node scripts/check-site-shell.js",
-    "predeploy": "echo Skip build",
+    "preview": "python3 -m http.server 4173",
+    "predeploy": "npm test",
     "deploy": "gh-pages -d ."
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Muhammad7839/portfolio.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "software-engineer",
+    "portfolio",
+    "java",
+    "python",
+    "kotlin",
+    "full-stack",
+    "applied-ai"
+  ],
+  "author": "Muhammad Imran",
+  "license": "SEE LICENSE IN LICENSE.txt",
   "bugs": {
     "url": "https://github.com/Muhammad7839/portfolio/issues"
   },
-  "homepage": "https://Muhammad7839.github.io/portfolio",
+  "homepage": "https://muhammad7839.github.io/portfolio/",
   "devDependencies": {
     "gh-pages": "^6.3.0"
+  },
+  "dependencies": {
+    "lenis": "1.3.23"
   }
 }

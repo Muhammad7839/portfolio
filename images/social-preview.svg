@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <radialGradient id="nebula" cx="70%" cy="18%" r="70%">
+      <stop offset="0" stop-color="#ffffff" stop-opacity=".13"/>
+      <stop offset=".45" stop-color="#ffffff" stop-opacity=".025"/>
+      <stop offset="1" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="accent" x1="0" x2="1">
+      <stop stop-color="#8cf1d5"/>
+      <stop offset="1" stop-color="#d8e2ff"/>
+    </linearGradient>
+    <linearGradient id="band" x1="0" y1="0" x2="0" y2="1">
+      <stop stop-color="#ffffff" stop-opacity="0"/>
+      <stop offset=".5" stop-color="#ffffff" stop-opacity=".075"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="#030304"/>
+  <rect width="1200" height="630" fill="url(#nebula)"/>
+  <rect x="-180" y="250" width="1560" height="120" fill="url(#band)" transform="rotate(-17 600 315)"/>
+  <g fill="#fff">
+    <circle cx="80" cy="92" r="2" opacity=".7"/><circle cx="191" cy="51" r="1" opacity=".5"/>
+    <circle cx="336" cy="116" r="1.4" opacity=".55"/><circle cx="487" cy="62" r="1" opacity=".38"/>
+    <circle cx="621" cy="101" r="2" opacity=".72"/><circle cx="789" cy="43" r="1.2" opacity=".5"/>
+    <circle cx="935" cy="126" r="1" opacity=".42"/><circle cx="1102" cy="77" r="2" opacity=".64"/>
+    <circle cx="1041" cy="239" r="1" opacity=".45"/><circle cx="1140" cy="361" r="1.6" opacity=".6"/>
+    <circle cx="985" cy="524" r="2" opacity=".64"/><circle cx="824" cy="574" r="1" opacity=".5"/>
+    <circle cx="650" cy="532" r="1.4" opacity=".42"/><circle cx="476" cy="582" r="2" opacity=".58"/>
+    <circle cx="295" cy="514" r="1" opacity=".5"/><circle cx="119" cy="555" r="1.5" opacity=".6"/>
+    <circle cx="242" cy="214" r="1.2" opacity=".48"/><circle cx="278" cy="238" r="1.8" opacity=".68"/>
+    <circle cx="318" cy="251" r=".9" opacity=".5"/><circle cx="353" cy="279" r="1.4" opacity=".58"/>
+    <circle cx="710" cy="354" r="1" opacity=".46"/><circle cx="748" cy="375" r="1.7" opacity=".7"/>
+    <circle cx="786" cy="392" r="1.1" opacity=".5"/><circle cx="829" cy="417" r="1.5" opacity=".62"/>
+    <circle cx="880" cy="448" r=".9" opacity=".44"/><circle cx="918" cy="468" r="1.8" opacity=".68"/>
+  </g>
+  <rect x="64" y="64" width="1072" height="502" rx="34" fill="#090a0c" fill-opacity=".8" stroke="#ffffff" stroke-opacity=".14"/>
+  <text x="112" y="152" fill="#8cf1d5" font-family="Arial, sans-serif" font-size="24" font-weight="700" letter-spacing="5">WELCOME TO MY UNIVERSE</text>
+  <text x="108" y="275" fill="#ffffff" font-family="Arial, sans-serif" font-size="74" font-weight="800">Muhammad Imran</text>
+  <text x="112" y="354" fill="url(#accent)" font-family="Arial, sans-serif" font-size="42" font-weight="700">Software Engineer · Full-Stack · Applied AI</text>
+  <text x="112" y="432" fill="#c5cad4" font-family="Arial, sans-serif" font-size="28">Welcome to my universe.</text>
+  <text x="112" y="472" fill="#c5cad4" font-family="Arial, sans-serif" font-size="28">Where ideas become systems that run in the real world.</text>
+  <g transform="translate(1014 420) rotate(32)">
+    <path d="M0-40 25 15 10 9 0 58-10 9-25 15Z" fill="#fff"/>
+    <circle cx="0" cy="-3" r="8" fill="#8cf1d5"/>
+    <circle cx="0" cy="48" r="5" fill="#8cf1d5" opacity=".72"/>
+    <circle cx="0" cy="62" r="3.8" fill="#8cf1d5" opacity=".52"/>
+    <circle cx="0" cy="75" r="2.6" fill="#8cf1d5" opacity=".34"/>
+    <circle cx="0" cy="87" r="1.6" fill="#8cf1d5" opacity=".2"/>
+  </g>
+</svg>

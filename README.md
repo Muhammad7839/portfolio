@@ -1,45 +1,68 @@
-# Muhammad Imran | Software Engineer Portfolio
+# Muhammad Imran — Software Engineering Portfolio
 
-This portfolio website presents Muhammad Imran's software engineering work, experience, skills, education, resume, and contact information in a polished static web experience. It is designed for internship and engineering role submissions, highlighting production-minded project work across backend, mobile, web, and open-source software with a responsive layout and professional visual design.
+A recruiter-first static portfolio presenting Muhammad Imran's work across enterprise software support, open source, backend, mobile, full-stack products, and applied AI.
 
-## Live Demo
+**Live site:** <https://muhammad7839.github.io/portfolio/>
 
-[View the portfolio](https://muhammad7839.github.io/portfolio)
+## Design direction
 
-## Pages and Sections
+The portfolio uses a permanent dark universe theme with a living three-depth grayscale canvas star field. Core professional content remains immediate and accessible, while optional spacecraft-pointer, debug-mode, achievement, and 404-game interactions reward deeper exploration.
 
-- `index.html` - Home page with a splash screen intro, typewriter name animation, hero introduction, resume download button, contact link, selected project highlights, engineering approach cards, and recent experience highlights.
-- `projects.html` - Full project list covering open-source, AI, backend, full-stack, Android, JavaFX, and web projects, with project summaries, technologies, achievements, live links, GitHub links, and demo links where available.
-- `about.html` - About page describing Muhammad's engineering approach, production mindset, debugging discipline, selected technical stack, and software quality values.
-- `experience.html` - Experience timeline covering SolarShare, Java and Flutter internships, AI4ALL, CodePath mentoring, FinTrack backend work, and help desk technical support.
-- `skills.html` - Skills page organized into core languages, frameworks and backend, AI and ML, databases and tools, and testing and delivery.
-- `education.html` - Education page covering Farmingdale State College, the Computer Science degree with Applied Mathematics minor, relevant coursework, honors, and CodePath training.
-- `resume.html` - Resume page with an embedded PDF preview, direct resume download, and option to open the PDF in a new browser tab.
-- `contact.html` - Contact page with direct email, phone, LinkedIn, GitHub, HackerRank, and resume download links.
+The homepage prioritizes:
 
-## Features
+1. role and value proposition;
+2. resume, work, and contact actions;
+3. four measurable proof points;
+4. Zowe, FitGPT, and SolarShare;
+5. experience and engineering approach;
+6. applied-AI ownership.
 
-- Typewriter animation on the home page hero introduction.
-- Splash screen intro before the main home page content appears.
-- Custom color scheme and typography for a consistent personal brand.
-- Font Awesome icons used across navigation, buttons, contact links, skills, and profile links.
-- Resume download links from the home, contact, and resume pages.
-- Responsive layout with desktop navigation and mobile-friendly navigation behavior.
+## Architecture
 
-## Technologies
+- Static HTML across eight primary pages plus `404.html`
+- Minimal reset in `assets/css/base.css` and shared styling in `assets/css/site-shell.css`
+- Shared navigation and mobile focus management in `assets/js/site-nav.js`
+- Shared three-layer canvas galaxy with clustered dust, twinkle, parallax, warp drift, and an animation-frame fallback in `assets/js/site-galaxy.js`
+- Progressive reveal, proof counters, and card lighting in `assets/js/site-motion.js`
+- Accessibility-gated desktop smoothing in `assets/js/site-scroll.js`
+- Fine-pointer spacecraft effect in `assets/js/site-cursor.js`
+- Optional debug mode and achievements in `assets/js/site-explore.js`
+- No runtime framework or production build step
 
-- HTML
-- CSS
-- JavaScript
+## Local development
 
-## Running Locally
-
-No build step is required. Open `index.html` directly in a web browser to view the portfolio locally.
-
-```text
-index.html
+```bash
+npm ci
+npm test
+npm run preview
 ```
 
-## Project Status
+Open <http://localhost:4173/>.
 
-The portfolio is complete and submission-ready.
+## Verification
+
+`npm test` validates:
+
+- all pages, shared assets, and local references;
+- recruiter fast-lane proof and actions;
+- metadata and structured data;
+- reduced-motion and cursor gates;
+- mobile navigation focus behavior;
+- self-contained 404 recovery and game behavior;
+- removal of unused template JavaScript.
+
+The galaxy caps itself at 260 stars on desktop and 110 below 768px, disables parallax on compact screens, pauses while the page is hidden, and exposes read-only `data-*` diagnostics on its canvas for motion regression checks.
+
+Before release, also perform desktop/mobile browser checks, keyboard navigation, reduced-motion emulation, and Lighthouse review.
+
+## Deployment
+
+The site is hosted with GitHub Pages. Deployment is intentional and should happen only after tests and working-tree review:
+
+```bash
+npm run deploy
+```
+
+## Credits and license
+
+The original site began from the HTML5 UP Massively template and retains its license in `LICENSE.txt`. Portfolio content and custom enhancements belong to Muhammad Imran.
