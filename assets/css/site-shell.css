@@ -2853,8 +2853,25 @@ body.command-open {
 }
 
 @media (max-width: 768px) {
-  .command-trigger span {
+  /* On touch devices the ⌘K shortcut is meaningless and the wide chip
+     overlaps scrolling content — collapse to a compact circular search FAB. */
+  .command-trigger span,
+  .command-trigger kbd {
     display: none;
+  }
+  .command-trigger {
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    gap: 0;
+    justify-content: center;
+  }
+  .command-trigger::before {
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    content: "\f002"; /* magnifying glass */
+    font-size: 1rem;
+    line-height: 1;
   }
 }
 
