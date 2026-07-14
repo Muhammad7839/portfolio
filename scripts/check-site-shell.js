@@ -448,6 +448,16 @@ assert(atmosphereCss.includes('translateY(30px) scale(0.974)'), 'scroll-reveal s
 assert(/@media \(prefers-reduced-motion: reduce\)[\s\S]*\.reveal-visible[\s\S]*transform: none !important/.test(atmosphereCss), 'reduced-motion should still force reveals static');
 assert(/\*::before[\s\S]{0,120}animation-duration: 0\.001ms !important/.test(atmosphereCss), 'reduced-motion should freeze ::before animations including the nebula drift');
 
+/* Smoothness: the hero name reveal must be a continuous wipe (no choppy
+   steps()), and cross-page navigation should use native view transitions. */
+const smoothCss = read('assets/css/site-shell.css');
+assert(smoothCss.includes('.hero-name-text') && /animation: heroNameType 0\.62s cubic-bezier/.test(smoothCss), 'hero name should reveal with a smooth cubic-bezier wipe');
+assert(!/heroNameType[^;]*steps\(/.test(smoothCss), 'hero name reveal should not use choppy steps()');
+assert(/@view-transition\s*\{[\s\S]{0,60}navigation:\s*auto/.test(smoothCss), 'pages should opt into native cross-document view transitions');
+assert(/@media \(prefers-reduced-motion: reduce\)[\s\S]*::view-transition-old\(root\)[\s\S]*animation: none !important/.test(smoothCss), 'view transitions should be disabled under reduced motion');
+const navSmoothJs = read('assets/js/site-nav.js');
+assert(navSmoothJs.includes('startViewTransition') && /supportsViewTransitions[\s\S]{0,120}return;/.test(navSmoothJs), 'nav should defer to native view transitions instead of the JS fade when supported');
+
 if (failures > 0) {
   process.exit(1);
 }

@@ -95,6 +95,10 @@
   var overlay = document.querySelector("[data-mobile-nav-overlay]");
   var closeButton = document.querySelector(".mobile-nav-close");
   var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  /* When the browser can do native cross-document view transitions, let it
+     handle the page change (smooth GPU cross-fade) instead of the JS fade,
+     which otherwise fades the outgoing page out before the snapshot. */
+  var supportsViewTransitions = "startViewTransition" in document;
 
   document.querySelectorAll("a[href]").forEach(function(link) {
     var href = link.getAttribute("href");
@@ -125,6 +129,10 @@
         event.button !== 0
       ) {
         return;
+      }
+
+      if (supportsViewTransitions) {
+        return; /* browser cross-fades the navigation natively */
       }
 
       event.preventDefault();

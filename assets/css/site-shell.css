@@ -374,6 +374,26 @@ body.home-page #main {
   transition: opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
+/* Native cross-document page transitions where supported (Chrome/Edge/Safari):
+   a smooth, GPU-driven cross-fade between pages. The JS fade below is the
+   fallback for browsers without view transitions. */
+@view-transition {
+  navigation: auto;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.32s;
+  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none !important;
+  }
+}
+
 body.portfolio-page {
   transition: opacity 0.18s ease, transform 0.18s ease;
 }
@@ -798,7 +818,10 @@ body.home-page.hero-copy-visible .home-shell > :not(.hero-panel) {
 .hero-name-text {
   display: inline-block;
   word-spacing: 0.12em;
-  animation: heroNameType 0.58s steps(14, end) both;
+  /* Smooth continuous wipe rather than steps() — the stepped reveal caused
+     14 discrete repaints that stuttered while the galaxy canvas initialised. */
+  animation: heroNameType 0.62s cubic-bezier(0.22, 1, 0.36, 1) both;
+  will-change: clip-path;
 }
 
 @keyframes heroNameType {
