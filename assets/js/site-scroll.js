@@ -20,10 +20,14 @@
   });
 
   document.documentElement.dataset.smoothScroll = "active";
+  /* Expose the instance so in-page jumps (e.g. the project constellation)
+     scroll through Lenis instead of fighting it with native scrollIntoView. */
+  window.__lenisInstance = lenis;
 
   reduceMotion.addEventListener("change", function(event) {
     if (!event.matches) return;
     lenis.destroy();
+    window.__lenisInstance = null;
     delete document.documentElement.dataset.smoothScroll;
   });
 })();

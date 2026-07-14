@@ -166,7 +166,17 @@
       event.preventDefault();
       var card = document.getElementById(n.id);
       if (!card) return;
-      card.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "center" });
+      var lenis = window.__lenisInstance;
+      if (lenis && typeof lenis.scrollTo === "function") {
+        /* Centre the card, going through Lenis so every star reliably scrolls
+           (native scrollIntoView is swallowed by Lenis). Pass a NUMBER — this
+           Lenis build ignores an element target but honours an absolute one. */
+        var rect = card.getBoundingClientRect();
+        var target = rect.top + window.scrollY - Math.max(0, (window.innerHeight - rect.height) / 2);
+        lenis.scrollTo(target, { duration: reduceMotion ? 0 : 0.9, force: true });
+      } else {
+        card.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "center" });
+      }
       card.classList.remove("card-flash");
       void card.offsetWidth;
       card.classList.add("card-flash");

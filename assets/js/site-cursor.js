@@ -51,8 +51,8 @@
   function renderRing() {
     ringX += (targetX - ringX) * 0.14;
     ringY += (targetY - ringY) * 0.14;
-    shipX += (targetX - shipX) * 0.4;
-    shipY += (targetY - shipY) * 0.4;
+    shipX += (targetX - shipX) * 0.6;
+    shipY += (targetY - shipY) * 0.6;
     ring.style.transform = "translate3d(" + ringX + "px," + ringY + "px,0) translate(-50%,-50%)";
     ship.style.transform = "translate3d(" + shipX + "px," + shipY + "px,0) translate(-50%,-50%)";
     frameId = window.requestAnimationFrame(renderRing);

@@ -375,15 +375,15 @@ body.home-page #main {
 }
 
 body.portfolio-page {
-  transition: opacity 0.32s ease, transform 0.32s ease;
+  transition: opacity 0.18s ease, transform 0.18s ease;
 }
 
 body.portfolio-page.page-transitioning {
   opacity: 0;
-  transform: translateY(12px);
+  transform: translateY(8px);
 }
 
-body.portfolio-page:not(.home-page) #main {
+body.portfolio-page #main {
   animation: sitePageEnter 0.28s cubic-bezier(0.22, 1, 0.36, 1) backwards;
 }
 
