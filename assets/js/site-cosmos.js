@@ -59,7 +59,7 @@
   var DRIFT_SPEED = 0.16; /* units per second at rest */
   var SCROLL_BOOST = 0.055; /* extra speed per pixel of scroll velocity */
   var MAX_SPEED = 9.0;
-  var JUMP_SPEED = 26.0; /* the page-to-page hyperspace jump */
+  var JUMP_SPEED = 13.0; /* the page-to-page jump: enough to read as travel, not as a jolt */
   var MAX_DPR = 1.75;
 
   if (reduceMotion.matches) return;
@@ -454,7 +454,7 @@
        settles back to its drift instead of staying revved. */
     scrollEnergy *= Math.pow(0.0025, delta);
     if (!jumping) targetSpeed = Math.min(MAX_SPEED, DRIFT_SPEED + scrollEnergy * SCROLL_BOOST);
-    speed += (targetSpeed - speed) * Math.min(1, delta * (jumping ? 9 : 3.2));
+    speed += (targetSpeed - speed) * Math.min(1, delta * (jumping ? 4.5 : 3.2));
     travel += speed * delta;
 
     /* Streaks only appear once there is real speed, so a still page has clean
@@ -621,10 +621,30 @@
   function land() {
     jumping = false;
     document.documentElement.removeAttribute("data-cosmos-jump");
-    /* Arrive fast and decelerate, so a new page feels flown-to, not cut-to. */
-    speed = Math.max(speed, JUMP_SPEED * 0.45);
+    /* Arrive already moving and decelerate, so a new page feels flown-to
+       rather than cut-to. Gentle enough that it settles within a second. */
+    speed = Math.max(speed, JUMP_SPEED * 0.3);
     scrollEnergy = 0;
   }
+
+  /**
+   * Cross-document transitions die silently if the next page is not renderable
+   * within about four seconds. When that happens there is no transition to
+   * decelerate out of, so land immediately rather than arriving mid-warp.
+   */
+  window.addEventListener("pagereveal", function (event) {
+    if (!event.viewTransition) {
+      land();
+      return;
+    }
+    event.viewTransition.finished.then(land, land);
+  });
+
+  /* Leaving: hand the outgoing page the same wind-up whether the visitor
+     clicked a link, used the keyboard, or pressed Back. */
+  window.addEventListener("pageswap", function () {
+    jump();
+  });
 
   /* A same-origin click is a jump. Anything that opens elsewhere, downloads,
      or was modifier-clicked is left completely alone. */

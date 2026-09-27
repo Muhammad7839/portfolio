@@ -429,42 +429,59 @@ body.home-page #main {
    while the one you asked for arrives out of the depth, in step with the
    starfield winding up to hyperspace. Both halves are the browser's own
    view transition, so they stay on the compositor and cost no main thread. */
+/* Snapshots are bitmaps of two differently sized pages, and the default
+   object-fit stretches one into the other's box - the "taffy" warp. Pinning
+   both to the full box with `cover` makes the browser animate plain geometry
+   instead of distorting the picture, which is most of the difference between
+   a move that reads as smooth and one that reads as a wobble. */
+::view-transition-old(root),
+::view-transition-new(root),
+::view-transition-old(page-content),
+::view-transition-new(page-content),
+::view-transition-old(site-chrome),
+::view-transition-new(site-chrome) {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  overflow: hidden;
+}
+
 html[data-cosmos="on"]::view-transition-old(root) {
-  animation: cosmosDepartToCamera 0.42s cubic-bezier(0.55, 0, 0.85, 0.35) both;
-  transform-origin: 50% 46%;
+  animation: cosmosDepartToCamera 0.24s cubic-bezier(0.4, 0, 1, 1) both;
+  transform-origin: 50% 40%;
 }
 
 html[data-cosmos="on"]::view-transition-new(root) {
-  animation: cosmosArriveFromDepth 0.52s cubic-bezier(0.16, 1, 0.3, 1) both;
-  transform-origin: 50% 46%;
+  animation: cosmosArriveFromDepth 0.32s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  transform-origin: 50% 40%;
 }
 
+/* No blur in any of these. `filter: blur()` on a full-viewport snapshot is the
+   single most expensive thing a transition can do - the GPU samples dozens of
+   neighbouring pixels for every pixel it draws, twice, on a layer the size of
+   the window - and it is what made these read as a stutter rather than a move.
+   Depth now comes from scale and opacity, which the compositor handles without
+   touching a fragment shader. */
 @keyframes cosmosDepartToCamera {
   from {
     opacity: 1;
-    transform: perspective(1400px) translate3d(0, 0, 0);
-    filter: blur(0);
+    transform: scale(1);
   }
   to {
     opacity: 0;
-    transform: perspective(1400px) translate3d(0, 0, 340px);
-    filter: blur(7px);
+    transform: scale(1.04);
   }
 }
 
 @keyframes cosmosArriveFromDepth {
   from {
     opacity: 0;
-    transform: perspective(1400px) translate3d(0, 0, -520px);
-    filter: blur(9px);
-  }
-  60% {
-    opacity: 1;
+    transform: scale(0.985);
   }
   to {
     opacity: 1;
-    transform: perspective(1400px) translate3d(0, 0, 0);
-    filter: blur(0);
+    transform: scale(1);
   }
 }
 
@@ -481,62 +498,61 @@ body.portfolio-page #main {
   view-transition-name: page-content;
 }
 
-html[data-cosmos="on"]::view-transition-old(site-chrome),
+/* The sidebar is on both pages, so the convincing thing is for it to look
+   like it never left: it holds position and only settles its opacity. */
+html[data-cosmos="on"]::view-transition-old(site-chrome) {
+  animation: none;
+  opacity: 1;
+}
+
 html[data-cosmos="on"]::view-transition-new(site-chrome) {
-  /* Persistent chrome should feel anchored: it dims and recedes a little, and
-     never leaves. */
-  animation: chromeHold 0.42s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: chromeHold 0.26s cubic-bezier(0.2, 0.8, 0.2, 1) both;
 }
 
 @keyframes chromeHold {
   from {
-    opacity: 0.55;
-    transform: perspective(1400px) translate3d(0, 0, -70px);
+    opacity: 0.72;
   }
   to {
     opacity: 1;
-    transform: perspective(1400px) translate3d(0, 0, 0);
   }
 }
 
+/* Short on purpose. A long transition gives a dropped frame more room to be
+   seen; under about a third of a second the eye reads continuity even when a
+   frame slips. */
 html[data-cosmos="on"]::view-transition-old(page-content) {
-  animation: contentDepart 0.40s cubic-bezier(0.55, 0, 0.85, 0.35) both;
-  transform-origin: 50% 40%;
+  animation: contentDepart 0.22s cubic-bezier(0.4, 0, 1, 1) both;
+  transform-origin: 50% 35%;
 }
 
 html[data-cosmos="on"]::view-transition-new(page-content) {
-  animation: contentArrive 0.56s cubic-bezier(0.16, 1, 0.3, 1) both;
-  transform-origin: 50% 40%;
+  animation: contentArrive 0.34s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  transform-origin: 50% 35%;
 }
 
+/* The content still travels, but in the two properties the compositor can
+   animate for free. rotateX is gone too: tipping a full-page snapshot reads as
+   a lurch rather than as depth, and it costs a much larger composited layer. */
 @keyframes contentDepart {
   from {
     opacity: 1;
-    transform: perspective(1200px) translate3d(0, 0, 0) rotateX(0deg);
-    filter: blur(0);
+    transform: translate3d(0, 0, 0) scale(1);
   }
   to {
     opacity: 0;
-    /* Tipping away as it leaves, so the exit has a direction rather than just
-       a scale. */
-    transform: perspective(1200px) translate3d(0, -4%, 420px) rotateX(7deg);
-    filter: blur(8px);
+    transform: translate3d(0, -8px, 0) scale(1.03);
   }
 }
 
 @keyframes contentArrive {
   from {
     opacity: 0;
-    transform: perspective(1200px) translate3d(0, 5%, -620px) rotateX(-6deg);
-    filter: blur(10px);
-  }
-  55% {
-    opacity: 1;
+    transform: translate3d(0, 10px, 0) scale(0.99);
   }
   to {
     opacity: 1;
-    transform: perspective(1200px) translate3d(0, 0, 0) rotateX(0deg);
-    filter: blur(0);
+    transform: translate3d(0, 0, 0) scale(1);
   }
 }
 
@@ -1898,14 +1914,15 @@ html[data-cosmos="on"] .site-galaxy {
   display: none;
 }
 
-/* While the jump is winding up, the page recedes a little and softens: the
-   sky is accelerating, so the content should read as being left behind. Short
-   enough that a mis-click never strands the reader in a blur. */
-html[data-cosmos-jump="on"] body.portfolio-page {
-  transform: perspective(1400px) translate3d(0, 0, -46px);
-  filter: blur(1.1px);
-  transition: transform 0.36s cubic-bezier(0.55, 0, 0.85, 0.35), filter 0.36s ease-out;
-}
+/* The page itself deliberately does NOT move while the jump winds up.
+   It used to take a perspective transform and a blur here, and both were
+   mistakes. A transform on `body` makes it the containing block for every
+   `position: fixed` descendant, so the starfield canvas and the sidebar were
+   being scaled by roughly 0.97 the instant you clicked - the whole sky visibly
+   shrank. And a filter on `body` forces the entire page into an offscreen
+   buffer at exactly the moment the browser is starting a navigation.
+   The acceleration belongs to the sky, which is GPU work that touches no
+   layout; the page just waits. */
 
 html.lenis,
 html.lenis body {
