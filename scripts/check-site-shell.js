@@ -18,6 +18,7 @@ const sharedMarkers = [
   'assets/css/site-shell.css',
   'assets/js/site-nav.js',
   'assets/js/site-galaxy.js',
+  'assets/js/site-cosmos.js',
   'assets/vendor/lenis/lenis.min.js',
   'assets/js/site-scroll.js',
   'assets/js/site-motion.js',
@@ -102,6 +103,7 @@ htmlPages.forEach((page) => {
   'assets/webfonts/space-grotesk-latin.woff2',
   'assets/js/site-nav.js',
   'assets/js/site-galaxy.js',
+  'assets/js/site-cosmos.js',
   'assets/vendor/lenis/lenis.min.js',
   'assets/vendor/lenis/LICENSE.txt',
   'assets/js/site-scroll.js',
@@ -204,6 +206,65 @@ const desktopStarLimit = Number((galaxyJs.match(/DESKTOP_STAR_LIMIT = (\d+)/) ||
 const mobileStarLimit = Number((galaxyJs.match(/MOBILE_STAR_LIMIT = (\d+)/) || [])[1]);
 assert(desktopStarLimit > 200 && desktopStarLimit <= 300, 'desktop galaxy should be denser but remain capped at 300 stars');
 assert(mobileStarLimit > 0 && mobileStarLimit <= 120, 'mobile galaxy should cap stars at 120');
+
+const siteCssShared = read('assets/css/site-shell.css');
+
+/* The three-dimensional sky. It supersedes the flat galaxy where the browser
+   can run it, so what matters most here is that every way OUT of it still
+   works: reduced motion, no WebGL, a hidden tab, and a contrast ceiling that
+   is derived from the palette rather than picked by eye. */
+const cosmosJs = read('assets/js/site-cosmos.js');
+[
+  'prefers-reduced-motion: reduce',
+  'if (reduceMotion.matches) return;',
+  'data-cosmos',
+  'visibilitychange',
+  'if (document.hidden) return;',
+  'devicePixelRatio',
+  '__portfolioCosmos',
+  'gl.blendFunc(gl.ONE, gl.ONE)',
+  'requestAnimationFrame',
+  'pageshow'
+].forEach((marker) => {
+  assert(cosmosJs.includes(marker), `cosmos should include ${marker}`);
+});
+assert(/premultipliedAlpha: true/.test(cosmosJs), 'cosmos must declare premultiplied alpha to match its additive blend');
+assert(!/gl\.blendFunc\(gl\.SRC_ALPHA/.test(cosmosJs), 'SRC_ALPHA would multiply the shaders\' premultiplied output by alpha twice and wash the sky out');
+assert(cosmosJs.includes('canvas.remove()'), 'cosmos should tear itself down if reduced motion is turned on mid-visit');
+
+/* The contrast ceiling is the one number that keeps text readable over the
+   sky, so it is pinned here: raising it needs a deliberate edit to this test
+   and a fresh contrast calculation, not a quiet tweak to a constant. */
+const nebulaCeiling = Number((cosmosJs.match(/NEBULA_CEILING = ([\d.]+)/) || [])[1]);
+assert(
+  nebulaCeiling > 0 && nebulaCeiling <= 0.0565,
+  'nebula luminance must stay under 0.0565, the level at which --site-subtle text drops below WCAG AA on --site-bg'
+);
+const desktopCosmosStars = Number((cosmosJs.match(/DESKTOP_STARS = (\d+)/) || [])[1]);
+const mobileCosmosStars = Number((cosmosJs.match(/MOBILE_STARS = (\d+)/) || [])[1]);
+assert(desktopCosmosStars > 0 && desktopCosmosStars <= 6000, 'desktop star volume should stay bounded');
+assert(mobileCosmosStars > 0 && mobileCosmosStars < desktopCosmosStars, 'phones should carry a smaller volume than desktops');
+
+/* The flat galaxy must remain a working fallback, never be deleted for it. */
+assert(
+  siteCssShared.includes('html[data-cosmos="on"] .site-galaxy'),
+  'the flat galaxy should step aside only while the WebGL sky is actually running'
+);
+[ 'cosmosDepartToCamera', 'cosmosArriveFromDepth' ].forEach((name) => {
+  assert(siteCssShared.includes(`@keyframes ${name}`), `site-shell.css should define the ${name} page-flight animation`);
+});
+assert(
+  /@media \(prefers-reduced-motion: reduce\)[\s\S]*::view-transition-old\(root\)[\s\S]*animation: none !important/.test(siteCssShared),
+  'the page-flight transition must be disabled under reduced motion'
+);
+
+/* Gradient-filled text needs `color: transparent`, so a browser that fails to
+   paint the clipped background renders the headline invisible. It was removed
+   from the hero; keep it removed. */
+[ '.hero-title-primary', '.hero-copy-body > .eyebrow' ].forEach((selector) => {
+  const rule = siteCssShared.slice(siteCssShared.indexOf(selector), siteCssShared.indexOf(selector) + 400);
+  assert(!/-webkit-text-fill-color:\s*transparent/.test(rule), `${selector} should not rely on transparent text fill`);
+});
 
 const scrollJs = read('assets/js/site-scroll.js');
 ['window.Lenis', '(pointer: fine)', '(hover: hover)', 'prefers-reduced-motion: reduce', 'syncTouch: false'].forEach((marker) => {
@@ -327,6 +388,7 @@ removedTemplateFiles.forEach((relativePath) => {
 const scriptFiles = [
   'assets/js/site-nav.js',
   'assets/js/site-galaxy.js',
+  'assets/js/site-cosmos.js',
   'assets/js/site-scroll.js',
   'assets/js/site-motion.js',
   'assets/js/site-cursor.js',

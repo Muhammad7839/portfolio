@@ -32,11 +32,12 @@
     '<div class="command-panel">' +
       '<div class="command-inputwrap">' +
         '<span class="command-prompt">&gt;</span>' +
-        '<input class="command-input" type="text" autocomplete="off" spellcheck="false" ' +
+        '<input class="command-input" id="command-input" name="command" type="search" role="combobox" ' +
+        'aria-expanded="false" aria-controls="command-results" autocomplete="off" spellcheck="false" ' +
         'placeholder="Jump to a page, run an action, or search…" aria-label="Type a command or search" />' +
         '<kbd class="command-esc">esc</kbd>' +
       "</div>" +
-      '<ul class="command-results" role="listbox" aria-label="Commands"></ul>' +
+      '<ul class="command-results" id="command-results" role="listbox" aria-label="Commands"></ul>' +
       '<div class="command-foot"><span>↑↓ to navigate</span><span>↵ to run</span><span>from Muhammad’s universe</span></div>' +
     "</div>";
   document.body.appendChild(overlay);

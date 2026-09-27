@@ -27,7 +27,11 @@
   --site-sidebar: rgba(5, 5, 7, 0.94);
   --site-text: #f7fbff;
   --site-muted: #c2cee2;
-  --site-subtle: #8795ae;
+  /* Raised from #8795ae (6.66:1). The dimmest text in the palette is what
+     decides how bright the sky behind it may be; at #a3b0c6 it clears 9.19:1
+     and the three-dimensional field gets a real luminance budget to work with
+     instead of a sliver. See NEBULA_CEILING in assets/js/site-cosmos.js. */
+  --site-subtle: #a3b0c6;
   --site-shadow: 0 28px 80px rgba(0, 0, 0, 0.32);
   --site-radius-xl: 32px;
   --site-radius-lg: 24px;
@@ -385,6 +389,50 @@ body.home-page #main {
 ::view-transition-new(root) {
   animation-duration: 0.32s;
   animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* With the three-dimensional sky running (site-cosmos.js), a page change is a
+   journey rather than a cut: the page you are leaving flies past the camera
+   while the one you asked for arrives out of the depth, in step with the
+   starfield winding up to hyperspace. Both halves are the browser's own
+   view transition, so they stay on the compositor and cost no main thread. */
+html[data-cosmos="on"]::view-transition-old(root) {
+  animation: cosmosDepartToCamera 0.42s cubic-bezier(0.55, 0, 0.85, 0.35) both;
+  transform-origin: 50% 46%;
+}
+
+html[data-cosmos="on"]::view-transition-new(root) {
+  animation: cosmosArriveFromDepth 0.52s cubic-bezier(0.16, 1, 0.3, 1) both;
+  transform-origin: 50% 46%;
+}
+
+@keyframes cosmosDepartToCamera {
+  from {
+    opacity: 1;
+    transform: perspective(1400px) translate3d(0, 0, 0);
+    filter: blur(0);
+  }
+  to {
+    opacity: 0;
+    transform: perspective(1400px) translate3d(0, 0, 340px);
+    filter: blur(7px);
+  }
+}
+
+@keyframes cosmosArriveFromDepth {
+  from {
+    opacity: 0;
+    transform: perspective(1400px) translate3d(0, 0, -520px);
+    filter: blur(9px);
+  }
+  60% {
+    opacity: 1;
+  }
+  to {
+    opacity: 1;
+    transform: perspective(1400px) translate3d(0, 0, 0);
+    filter: blur(0);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1711,13 +1759,31 @@ body[data-custom-cursor] :is(iframe, embed, object, canvas) {
 }
 
 /* Full-page canvas and Lenis runtime helpers. */
-.site-galaxy {
+.site-galaxy,
+.site-cosmos {
   position: fixed;
   inset: 0;
   z-index: 0;
   width: 100%;
   height: 100%;
   pointer-events: none;
+}
+
+/* Two skies would contradict each other, so the flat canvas stands down the
+   moment the WebGL volume is actually running. It stays in the document as the
+   fallback for no-WebGL and reduced-motion visitors, where `data-cosmos` is
+   never set. */
+html[data-cosmos="on"] .site-galaxy {
+  display: none;
+}
+
+/* While the jump is winding up, the page recedes a little and softens: the
+   sky is accelerating, so the content should read as being left behind. Short
+   enough that a mis-click never strands the reader in a blur. */
+html[data-cosmos-jump="on"] body.portfolio-page {
+  transform: perspective(1400px) translate3d(0, 0, -46px);
+  filter: blur(1.1px);
+  transition: transform 0.36s cubic-bezier(0.55, 0, 0.85, 0.35), filter 0.36s ease-out;
 }
 
 html.lenis,
@@ -2130,14 +2196,15 @@ body[data-mode="debug"] :is(.content-panel, .hero-panel, .info-card, .spotlight-
 }
 
 /* === Hero tagline shine + cursor reticle =========================== */
+/* Solid, not a gradient fill. Painting a sweep into the glyphs was both a
+   dated tell and a real risk: it needs `color: transparent`, so any browser
+   that fails to paint the clipped background renders the headline invisible.
+   In a lit three-dimensional scene the type should read as lit BY the scene,
+   which is what the bloom below does, without ever putting the text itself at
+   the mercy of a paint succeeding. */
 .hero-title > span:not(.hero-title-primary) {
-  background: linear-gradient(100deg, #8cf1d5 0%, #8cf1d5 38%, #ffffff 50%, #8cf1d5 62%, #8cf1d5 100%);
-  background-size: 220% auto;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  color: transparent;
-  animation: heroTextShine 6.5s ease-in-out infinite;
+  color: var(--site-accent);
+  text-shadow: 0 0 28px rgba(140, 241, 213, 0.28);
 }
 
 @keyframes heroTextShine {
@@ -2279,11 +2346,8 @@ body[data-mode="debug"] :is(.content-panel, .hero-panel, .info-card, .spotlight-
 
 /* === Glitter shine on the eyebrow + title ========================== */
 .hero-copy-body > .eyebrow {
-  background: linear-gradient(100deg, #8cf1d5 0%, #8cf1d5 40%, #ffffff 50%, #8cf1d5 60%, #8cf1d5 100%);
-  background-size: 220% auto;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: var(--site-accent);
+  text-shadow: 0 0 20px rgba(140, 241, 213, 0.22);
 }
 
 .has-js .hero-copy-body > .eyebrow {
@@ -2293,13 +2357,11 @@ body[data-mode="debug"] :is(.content-panel, .hero-panel, .info-card, .spotlight-
 }
 
 .hero-title-primary {
-  background: linear-gradient(100deg, #ffffff 0%, #ffffff 44%, #b8f0e2 50%, #ffffff 56%, #ffffff 100%);
-  background-size: 220% auto;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  color: transparent;
-  animation: heroTextShine 6.5s ease-in-out infinite;
+  color: #ffffff;
+  text-shadow:
+    0 0 1px rgba(255, 255, 255, 0.6),
+    0 0 34px rgba(184, 240, 226, 0.20),
+    0 0 90px rgba(125, 167, 255, 0.12);
 }
 
 /* === Spaceship flying across the name ============================== */
