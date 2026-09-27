@@ -597,6 +597,21 @@ body.portfolio-page #main {
   }
 }
 
+/* Where the browser runs the cross-document transition, THAT is the entrance,
+   and this one has to get out of the way.
+   `backwards` fill means #main sits at opacity 0 before its animation starts -
+   which is exactly when the browser captures the incoming page for the
+   transition. So the transition was playing over an empty page, and the
+   content only faded in afterwards: arrive, hold, then start again. One
+   entrance, not two. The rule above stays for browsers with no view
+   transitions, where it is the only entrance there is. */
+@supports (view-transition-name: none) {
+  body.portfolio-page #main {
+    animation: none;
+  }
+
+}
+
 body.portfolio-page #main > * {
   padding: 0;
   margin: 0;
@@ -3177,5 +3192,15 @@ body.command-open {
     display: inline-flex;
     align-items: center;
     justify-content: center;
+  }
+}
+
+/* The fallback sky faded up over 1.8s on every single navigation, so a browser
+   without WebGL got a page that kept re-dawning. It belongs at the end of the
+   file: the rule that starts the fade is declared later than the @supports
+   block above, and would otherwise win on source order. */
+@supports (view-transition-name: none) {
+  .site-galaxy {
+    animation: none;
   }
 }
