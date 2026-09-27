@@ -293,7 +293,14 @@ const siteCss = read('assets/css/site-shell.css');
 assert(siteCss.includes('@keyframes heroNameType'), 'name should use the layout-stable CSS typing effect');
 assert(siteCss.includes('@keyframes cursorThrusterPulse'), 'thruster dots should pulse without affecting layout');
 assert(!siteCss.includes('@import url("https://fonts.googleapis.com'), 'fonts should not use CSS @import');
-assert(siteCss.includes('instrument-sans-latin.woff2') && siteCss.includes('space-grotesk-latin.woff2'), 'portfolio fonts should be self-hosted');
+assert(
+  ['instrument-sans-latin.woff2', 'space-grotesk-latin.woff2', 'instrument-serif-latin.woff2'].every((f) => siteCss.includes(f)),
+  'portfolio fonts should be self-hosted'
+);
+/* Every self-hosted face ships its licence beside it. */
+['instrument-sans-OFL.txt', 'space-grotesk-OFL.txt', 'instrument-serif-OFL.txt'].forEach((f) => {
+  assert(fs.existsSync(path.join(root, 'assets/webfonts', f)), `${f} should ship beside the font it licenses`);
+});
 assert(!siteCss.includes('background-size: 122px 122px'), 'the repeating CSS dot grid should stay removed');
 assert(!siteCss.includes('.home-intro'), 'splash styles should stay removed');
 assert(siteCss.includes('rgba(12, 13, 17, 0.44)'), 'hero panel should remain transparent enough to reveal the galaxy');
