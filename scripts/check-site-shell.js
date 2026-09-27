@@ -232,6 +232,25 @@ assert(/premultipliedAlpha: true/.test(cosmosJs), 'cosmos must declare premultip
 assert(!/gl\.blendFunc\(gl\.SRC_ALPHA/.test(cosmosJs), 'SRC_ALPHA would multiply the shaders\' premultiplied output by alpha twice and wash the sky out');
 assert(cosmosJs.includes('canvas.remove()'), 'cosmos should tear itself down if reduced motion is turned on mid-visit');
 
+/* A page change freezes the outgoing page into a snapshot for the length of the
+   view transition. The sky only reads as smooth across that freeze if it is at
+   the same drift on both sides of it. Arriving at speed - the field tearing
+   past and decelerating while the visitor watches - is what made a navigation
+   feel stuck and then start again, and it survived three rounds of transition
+   fixes because nothing here was looking at the speed model. */
+const landBody = (cosmosJs.match(/function land\(\)\s*\{[\s\S]*?\n {2}\}/) || [])[0] || '';
+assert(landBody, 'cosmos should still define land()');
+assert(
+  !/\bspeed\s*=/.test(landBody),
+  'land() must not re-accelerate the field on arrival; the sky has to cross a navigation at its drift'
+);
+const jumpBody = (cosmosJs.match(/function jump\(\)\s*\{[\s\S]*?\n {2}\}/) || [])[0] || '';
+assert(jumpBody, 'cosmos should still define jump()');
+assert(
+  !/targetSpeed\s*=/.test(jumpBody),
+  'jump() must not wind the field up: the page freezes about a frame later, so the wind-up is never seen and only leaves the sky where the arriving page cannot match it'
+);
+
 /* The contrast ceiling is the one number that keeps text readable over the
    sky, so it is pinned here: raising it needs a deliberate edit to this test
    and a fresh contrast calculation, not a quiet tweak to a constant. */

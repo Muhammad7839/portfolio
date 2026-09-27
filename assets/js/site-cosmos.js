@@ -59,7 +59,6 @@
   var DRIFT_SPEED = 0.16; /* units per second at rest */
   var SCROLL_BOOST = 0.055; /* extra speed per pixel of scroll velocity */
   var MAX_SPEED = 9.0;
-  var JUMP_SPEED = 13.0; /* the page-to-page jump: enough to read as travel, not as a jolt */
   var MAX_DPR = 1.75;
 
   if (reduceMotion.matches) return;
@@ -606,24 +605,36 @@
   }
 
   /**
-   * The jump between pages. Navigation is handed off to the browser's own view
-   * transition (site-nav.js); this is the part the sky contributes: the field
-   * winds up to hyperspace so the two pages are separated by travel rather
-   * than by a cut.
+   * The page change. Navigation is handed to the browser's own view transition
+   * (site-nav.js); the sky's one job across it is to be CONTINUOUS.
+   *
+   * It used to wind the field up to hyperspace on the way out and arrive still
+   * moving on the way in. Neither could be seen and both cost the smoothness.
+   * The outgoing page is frozen into a snapshot about one frame after the
+   * click - measured at 18ms - so the wind-up never rendered; it only left the
+   * field still. Then the incoming page called land(), which started the sky
+   * at 3.3 units per second, twenty times the resting drift of 0.16, and
+   * decelerated in plain view for roughly forty frames. So what a visitor
+   * actually read between two pages was: a still picture held for a third of a
+   * second, then a sky tearing past and slowing down. Stuck, then starting
+   * again.
+   *
+   * The speed is left alone through a navigation now. The field is at the same
+   * drift on both sides of the freeze, so a third of a second of frozen
+   * snapshot moves it by 0.05 units - nothing the eye can catch it on. The
+   * sense of travel between pages comes from the page geometry instead
+   * (cosmosDepartToCamera / cosmosArriveFromDepth in site-shell.css), which is
+   * a compositor animation and cannot stall.
    */
   function jump() {
     if (jumping) return;
     jumping = true;
-    targetSpeed = JUMP_SPEED;
     document.documentElement.setAttribute("data-cosmos-jump", "on");
   }
 
   function land() {
     jumping = false;
     document.documentElement.removeAttribute("data-cosmos-jump");
-    /* Arrive already moving and decelerate, so a new page feels flown-to
-       rather than cut-to. Gentle enough that it settles within a second. */
-    speed = Math.max(speed, JUMP_SPEED * 0.3);
     scrollEnergy = 0;
   }
 
