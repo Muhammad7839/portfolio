@@ -32,8 +32,14 @@
   }
 
   var nodes = cards.map(function (card, i) {
-    var h3 = card.querySelector("h3");
-    var full = h3 ? h3.textContent.trim() : "Project " + (i + 1);
+    /* Whatever level the card's heading is. This asked for "h3" until the
+       cards became <h2> to fix a heading-level skip, and then every star in
+       the map silently fell back to "Project 1", "Project 2" - including the
+       link's aria-label, so a screen reader was offered "Jump to Project 1"
+       instead of the project's name. The star map reads the page; it does not
+       get to have an opinion about which heading level the page uses. */
+    var heading = card.querySelector("h2, h3, h4");
+    var full = heading ? heading.textContent.trim() : "Project " + (i + 1);
     var short = full.split("—")[0].trim();
     var label = short.split(/\s+/).slice(0, 2).join(" ");
     if (!card.id) card.id = "proj-" + slug(short);

@@ -372,6 +372,30 @@ assert(exploreJs.includes('sessionStorage'), 'exploration state should use sessi
 assert(exploreJs.includes('aria-live'), 'achievement region should announce politely');
 assert(exploreJs.includes('404.html'), 'debug panel should link to diagnostics');
 
+/* The star map and the toasts both read the project card's heading out of the
+   page. They asked for "h3" until an accessibility pass changed the cards to
+   <h2> to fix a heading-level skip, and nothing here noticed: every star fell
+   back to "Project 1", "Project 2", and the link a screen reader announced
+   became "Jump to Project 1". One markup change, two features broken in
+   silence. Whatever level projects.html uses, the reader has to accept it. */
+const projectCardHeadingLevel = (read('projects.html').match(
+  /<article class="spotlight-card"[^>]*>\s*(?:<div>\s*)?<(h[1-6])>/
+) || [])[1];
+assert(projectCardHeadingLevel, 'projects.html should give each project card a heading');
+const constellationJs = read('assets/js/site-constellation.js');
+const headingQuery = (constellationJs.match(/querySelector\(\s*["']((?:h[1-6]\s*,?\s*)+)["']/) || [])[1] || '';
+assert(headingQuery, 'site-constellation.js should look up the card heading');
+assert(
+  headingQuery.split(',').map((part) => part.trim()).includes(projectCardHeadingLevel),
+  `site-constellation.js queries "${headingQuery}" but projects.html writes its card titles as <${projectCardHeadingLevel}>, so every star would fall back to "Project N"`
+);
+
+/* Nothing should interrupt a visitor who only scrolled or moved the pointer. */
+assert(
+  !/showToast\(\s*"(?!debug")/.test(exploreJs),
+  'only debug mode, which takes a deliberate ten-key sequence, may raise a toast'
+);
+
 const siteCss = read('assets/css/site-shell.css');
 [
   '@media (prefers-reduced-motion: reduce)',

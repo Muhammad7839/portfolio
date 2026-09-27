@@ -114,29 +114,14 @@
     setDebugMode(true);
   }
 
-  var spotlight = document.querySelector(".spotlight-grid");
-  if (spotlight && "IntersectionObserver" in window) {
-    var spotlightObserver = new IntersectionObserver(
-      function(entries) {
-        if (entries.some(function(entry) { return entry.isIntersecting; })) {
-          showToast("selected-work", "Found: selected engineering work.");
-          spotlightObserver.disconnect();
-        }
-      },
-      { threshold: 0.18 }
-    );
-    spotlightObserver.observe(spotlight);
-  }
+  /* Two toasts used to fire without being asked for: one when the projects
+     grid scrolled into view, and one the first time the pointer crossed a
+     project card. Nobody opted into either. The second also read the card's
+     title from an "h3" that no longer exists, so what a visitor actually got
+     was a box in the corner saying "Inspecting: project".
 
-  var firstProjectHover = function(event) {
-    var card = event.target.closest && event.target.closest(".spotlight-card");
-    if (!card) {
-      return;
-    }
-
-    var title = card.querySelector("h3");
-    showToast("project-inspection", "Inspecting: " + (title ? title.textContent.trim() : "project"));
-    document.removeEventListener("pointerover", firstProjectHover);
-  };
-  document.addEventListener("pointerover", firstProjectHover);
+     A recruiter reading the work should not be interrupted by the page
+     congratulating them for scrolling. showToast stays for debug mode, which
+     is deliberate: it takes a ten-key sequence to reach and says something
+     the visitor just asked for. */
 })();
