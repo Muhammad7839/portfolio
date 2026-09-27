@@ -629,12 +629,10 @@
   function jump() {
     if (jumping) return;
     jumping = true;
-    document.documentElement.setAttribute("data-cosmos-jump", "on");
   }
 
   function land() {
     jumping = false;
-    document.documentElement.removeAttribute("data-cosmos-jump");
     scrollEnergy = 0;
   }
 
@@ -681,6 +679,20 @@
     true
   );
 
+  /* A lost GPU context takes the shaders and buffers with it, and this sky has
+     no path back from that: every draw call after it is a silent no-op. The
+     danger is not the blank canvas, it is that `data-cosmos` would stay set -
+     which is exactly what keeps the flat galaxy hidden. So hand the sky back
+     the same way a failed shader compile does, and site-galaxy.js resumes
+     drawing on its next frame. preventDefault() is required or the browser
+     will not consider the context recoverable at all. */
+  canvas.addEventListener("webglcontextlost", function (event) {
+    event.preventDefault();
+    stop();
+    document.documentElement.removeAttribute("data-cosmos");
+    canvas.remove();
+  });
+
   window.addEventListener("resize", resize, { passive: true });
   window.addEventListener("scroll", onScroll, { passive: true });
   window.addEventListener("pointermove", onPointer, { passive: true });
@@ -699,7 +711,6 @@
     if (!reduceMotion.matches) return;
     stop();
     document.documentElement.removeAttribute("data-cosmos");
-    document.documentElement.removeAttribute("data-cosmos-jump");
     canvas.remove();
   };
   if (typeof reduceMotion.addEventListener === "function") reduceMotion.addEventListener("change", onMotionPreference);

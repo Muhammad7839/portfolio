@@ -54,7 +54,12 @@
     var commits = data.commits || [];
 
     var stars = commits.slice(0, 16).map(function (c, i) {
-      return '<span class="gh-star" style="--i:' + i + '" tabindex="0" role="listitem"' +
+      /* Decorative commit dots. They carried tabindex="0" purely to trigger a
+         CSS tooltip on focus, which put sixteen 11px non-controls in the tab
+         order on every page - each announced only as a list item, repeating
+         what the log list beside them already says. The aria-label stays, so
+         the information is still read; only the stop is gone. */
+      return '<span class="gh-star" style="--i:' + i + '" role="listitem"' +
         ' data-tip="' + esc((c.repo.split("/")[1] || c.repo) + " — " + c.message) + '"' +
         ' aria-label="' + esc(c.repo + ": " + c.message) + '"></span>';
     }).join("");

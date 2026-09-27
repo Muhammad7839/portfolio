@@ -202,8 +202,12 @@
       }
 
       function boost(event) {
-        if (event) event.preventDefault();
+        /* The guard comes first. preventDefault() ahead of it swallowed Space
+           for the whole page - so Space no longer activated whichever button
+           had focus, and no longer scrolled - whether or not a flight was
+           even running. */
         if (!running) return;
+        if (event) event.preventDefault();
         ship.velocity = -5.8;
       }
 
@@ -236,7 +240,12 @@
       });
       canvas.addEventListener("pointerdown", boost);
       window.addEventListener("keydown", function(event) {
-        if (event.code === "Space" || event.code === "ArrowUp") boost(event);
+        if (event.code !== "Space" && event.code !== "ArrowUp") return;
+        /* Space belongs to whatever control has focus before it belongs to the
+           ship. Leave it alone whenever the visitor is on one. */
+        var el = document.activeElement;
+        if (el && el.closest && el.closest("button, a[href], input, select, textarea")) return;
+        boost(event);
       });
       document.addEventListener("visibilitychange", function() {
         if (document.hidden && running) {

@@ -58,6 +58,15 @@
   var active = 0;
   var lastFocus = null;
 
+  /* The trap holds the keyboard; this takes the page underneath out of the
+     accessibility tree too, so a screen reader's virtual cursor cannot wander
+     into content the visitor cannot see. */
+  function setBackgroundInert(on) {
+    [document.getElementById("main"), document.getElementById("sidebar"), trigger].forEach(function (el) {
+      if (el) el.inert = on;
+    });
+  }
+
   function norm(s) {
     return s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
   }
@@ -80,6 +89,7 @@
     filtered.forEach(function (cmd, idx) {
       var li = document.createElement("li");
       li.className = "command-item" + (idx === active ? " is-active" : "");
+      li.id = "command-option-" + idx;
       li.setAttribute("role", "option");
       li.setAttribute("aria-selected", idx === active ? "true" : "false");
       li.innerHTML = '<span class="command-label">' + cmd.label + "</span>" +
@@ -96,15 +106,28 @@
       empty.textContent = "No matches. Try “projects”, “AI”, or “resume”.";
       results.appendChild(empty);
     }
+    /* A combobox that never says what is selected is unusable without sight:
+       the list is visibly highlighted, but nothing is announced on arrow keys
+       unless the input points at the active option by id. */
+    input.setAttribute("aria-expanded", filtered.length ? "true" : "false");
+    paintActive();
   }
 
   function paintActive() {
-    Array.prototype.forEach.call(results.children, function (li, idx) {
+    /* Only real options. The empty-state row is a message, not a command: left
+       in this loop it picks up the selected highlight and an aria-selected on
+       an element with no role at all, so "No matches" reads as a choice you
+       could run. */
+    var options = results.querySelectorAll('[role="option"]');
+    Array.prototype.forEach.call(options, function (li, idx) {
       var on = idx === active;
       li.classList.toggle("is-active", on);
       li.setAttribute("aria-selected", on ? "true" : "false");
       if (on && li.scrollIntoView) li.scrollIntoView({ block: "nearest" });
     });
+    var current = filtered.length ? options[active] : null;
+    if (current && current.id) input.setAttribute("aria-activedescendant", current.id);
+    else input.removeAttribute("aria-activedescendant");
   }
 
   function filter() {
@@ -127,6 +150,7 @@
     lastFocus = document.activeElement;
     overlay.hidden = false;
     document.body.classList.add("command-open");
+    setBackgroundInert(true);
     input.value = "";
     filter();
     requestAnimationFrame(function () {
@@ -140,6 +164,7 @@
     overlay.classList.remove("is-open");
     document.body.classList.remove("command-open");
     window.setTimeout(function () { overlay.hidden = true; }, 180);
+    setBackgroundInert(false);
     if (lastFocus && lastFocus.focus) lastFocus.focus();
   }
 
@@ -180,7 +205,25 @@
 
   input.addEventListener("input", filter);
 
+  /* `aria-modal` tells a screen reader this is modal; it does not stop Tab.
+     Without this, Tab from the input landed on `.command-trigger` - appended to
+     <body> AFTER the overlay, so it sits behind the backdrop, invisible and
+     still operable - and Shift+Tab walked back into the page underneath. The
+     drawer in site-nav.js already solves this; same shape, one focusable. */
+  function trapFocus(e) {
+    if (e.key !== "Tab" || overlay.hidden) return;
+    var focusable = Array.prototype.slice.call(
+      overlay.querySelectorAll('a[href], button:not([disabled]), input:not([disabled]), [tabindex]:not([tabindex="-1"])')
+    );
+    if (!focusable.length) return;
+    var first = focusable[0];
+    var last = focusable[focusable.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  }
+
   overlay.addEventListener("keydown", function (e) {
+    trapFocus(e);
     if (e.key === "Escape") { e.preventDefault(); close(); }
     else if (e.key === "ArrowDown") { e.preventDefault(); if (filtered.length) { active = (active + 1) % filtered.length; paintActive(); } }
     else if (e.key === "ArrowUp") { e.preventDefault(); if (filtered.length) { active = (active - 1 + filtered.length) % filtered.length; paintActive(); } }

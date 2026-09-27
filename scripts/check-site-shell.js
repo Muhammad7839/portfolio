@@ -251,6 +251,80 @@ assert(
   'jump() must not wind the field up: the page freezes about a frame later, so the wind-up is never seen and only leaves the sky where the arriving page cannot match it'
 );
 
+/* Two skies must never draw at once. `html[data-cosmos="on"] .site-galaxy
+   { display: none }` only stops the flat one being SEEN - its requestAnimation
+   Frame loop kept running behind the WebGL layer, compositing 260 stars, a
+   milky-way band, two planets and a meteor every frame for the whole visit.
+   Measured at 90 wasted frames per 1.5 seconds alongside 90 real ones. The CSS
+   assertion above passes either way, which is exactly why this one has to
+   exist separately. */
+assert(
+  /data-cosmos/.test(galaxyJs),
+  'site-galaxy.js must know when the WebGL sky has taken over; hiding its canvas in CSS does not stop it drawing'
+);
+const galaxyTick = (galaxyJs.match(/function tick\([\s\S]*?\n {2}\}/) || [])[0] || '';
+assert(galaxyTick, 'site-galaxy.js should still define tick()');
+/* Strip comments first. A prose mention of data-cosmos in the explanation
+   above the guard satisfies a plain substring test while the guard itself is
+   gone - which is precisely what this assertion missed on its first draft. */
+const galaxyTickCode = galaxyTick.replace(/\/\*[\s\S]*?\*\//g, '').replace(/\/\/[^\n]*/g, '');
+assert(
+  /getAttribute\(\s*["']data-cosmos["']\s*\)/.test(galaxyTickCode),
+  'the galaxy frame loop itself has to read data-cosmos; gating only at startup misses a WebGL context lost mid-visit, and a comment about it is not a guard'
+);
+
+/* A lost GPU context takes the shaders with it and every later draw call is a
+   silent no-op. The blank canvas is survivable; `data-cosmos` staying set is
+   not, because that is what keeps the flat sky hidden behind the dead one. */
+assert(
+  /webglcontextlost/.test(cosmosJs),
+  'site-cosmos.js must hand the sky back to the flat fallback when the GPU context is lost'
+);
+
+/* The fix for "the transition was playing over a blank page". Both overrides
+   are load-bearing and both are source-order dependent, and the harness used
+   to prove only that the word `sitePageEnter` appeared somewhere - which stays
+   true after a reorder that reintroduces the bug. This regressed three times
+   before it was understood; it does not get to regress silently a fourth. */
+const supportsBlocks = siteCssShared.match(/@supports \(view-transition-name: none\)[\s\S]*?\n\}/g) || [];
+assert(
+  supportsBlocks.some((b) => /#main\s*\{[^}]*animation:\s*none/.test(b)),
+  '#main must have its entrance animation disabled where view transitions run, or the browser snapshots it at opacity 0 and the transition animates a blank page'
+);
+assert(
+  supportsBlocks.some((b) => /\.site-galaxy\s*\{[^}]*animation:\s*none/.test(b)),
+  'the flat sky must have galaxyFadeIn disabled where view transitions run, or a no-WebGL visitor gets a page that re-dawns on every navigation'
+);
+const galaxyFadeRule = siteCssShared.lastIndexOf('animation: galaxyFadeIn');
+const galaxyFadeOverride = siteCssShared.lastIndexOf('.site-galaxy {\n    animation: none');
+assert(
+  galaxyFadeOverride > galaxyFadeRule,
+  'the .site-galaxy animation override must be declared after the rule that starts the fade, or source order silently wins and the re-dawn comes back'
+);
+
+/* Without a build step the `?v=` query IS the deploy mechanism: GitHub Pages
+   caches the HTML too, so a page still asking for an old version keeps running
+   old code. One page left behind means two different builds of site-nav.js and
+   site-cosmos.js live in the same session depending on where the visitor
+   landed. `npm run bump` moves all of them together; this catches a hand-edit
+   that did not. */
+const assetVersions = new Map();
+for (const page of htmlPages) {
+  const html = read(page);
+  for (const [, , version] of html.matchAll(/(["'])(?:assets\/[^"'?]+)\?v=([^"'&]*)\1/g)) {
+    if (!assetVersions.has(version)) assetVersions.set(version, []);
+    assetVersions.get(version).push(page);
+  }
+}
+assert(assetVersions.size > 0, 'pages should cache-bust their local assets with a ?v= query');
+assert(
+  assetVersions.size === 1,
+  `every page must request the same asset version, or visitors get a mix of builds. Found: ${[...assetVersions]
+    .map(([v, pages]) => `${v} (${[...new Set(pages)].join(', ')})`)
+    .join(' vs ')}. Run \`npm run bump\`.`
+);
+
+
 /* The contrast ceiling is the one number that keeps text readable over the
    sky, so it is pinned here: raising it needs a deliberate edit to this test
    and a fresh contrast calculation, not a quiet tweak to a constant. */
@@ -486,6 +560,18 @@ assert(!/[?&](?:access_token|client_secret|token)=/.test(githubJs), 'GitHub requ
 /* Command palette must treat the query as data, never as markup. */
 const commandJs = read('assets/js/site-command.js');
 assert(commandJs.includes('norm(input.value'), 'command palette should use the query only for filtering');
+
+/* aria-modal tells a screen reader the dialog is modal. It does not stop Tab,
+   and the palette's own trigger button is appended to <body> after the overlay
+   - behind the backdrop, invisible, and still operable by keyboard. */
+assert(
+  /e\.key !== "Tab"|e\.key === "Tab"/.test(commandJs),
+  'the command palette is aria-modal and must trap Tab, or focus walks out of it into the page behind the backdrop'
+);
+assert(
+  /aria-activedescendant/.test(commandJs),
+  'the command palette is a combobox; without aria-activedescendant nothing announces which command the arrow keys landed on'
+);
 assert(!/innerHTML[^;]*input\.value/.test(commandJs), 'command palette must not inject the raw query into innerHTML');
 
 /* Externally loaded Font Awesome must be pinned with Subresource Integrity. */

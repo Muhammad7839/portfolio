@@ -404,6 +404,23 @@
       return;
     }
 
+    /* The WebGL volume supersedes this sky when it is running. Hiding this
+       canvas in CSS - which is all `html[data-cosmos="on"] .site-galaxy` did -
+       stops it being seen, not being drawn: 260 stars, a milky-way band, two
+       planets and a meteor were still being composited every single frame,
+       behind an opaque WebGL layer, for the whole visit. Measured at 90 wasted
+       frames per 1.5 seconds alongside 90 real ones.
+
+       The loop is kept alive rather than cancelled so the sky can come straight
+       back if the WebGL context is lost mid-visit and site-cosmos.js clears the
+       attribute. An empty callback costs nothing; the drawing was the cost. */
+    if (document.documentElement.getAttribute("data-cosmos") === "on") {
+      diagnostics.running = false;
+      previousTime = now;
+      frameId = window.requestAnimationFrame(tick);
+      return;
+    }
+
     var elapsed = previousTime ? Math.min(now - previousTime, 32) : 16;
     previousTime = now;
     parallaxX += (pointerX - parallaxX) * 0.075;

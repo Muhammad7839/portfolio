@@ -3185,8 +3185,14 @@ body.command-open {
     align-items: center;
   }
 
+  /* Icon-only controls need the width too. Both of these were already in the
+     min-height bucket above, but .site-nav-github carries a fixed
+     width: 2.55rem (~41px) and .mobile-nav-close only ever got padding-block,
+     so on a touch screen both stayed narrower than a fingertip. */
   .social-links a,
-  .icon-link {
+  .icon-link,
+  .site-nav-github,
+  .mobile-nav-close {
     min-width: 44px;
     min-height: 44px;
     display: inline-flex;
