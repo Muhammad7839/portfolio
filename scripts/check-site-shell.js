@@ -131,7 +131,7 @@ const indexHtml = read('index.html');
   'Where ideas become systems that run in the real world.',
   'hero-title-primary',
   'data-count="11"',
-  'data-count="185"',
+  'data-count="800"',
   'data-count="14"',
   'Where I’ve worked',
   'Anthropic Academy',
