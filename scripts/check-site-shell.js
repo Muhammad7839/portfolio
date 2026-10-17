@@ -144,7 +144,7 @@ const indexHtml = read('index.html');
   'SolarShare',
   'assets/resume.pdf',
   'contact.html',
-  'fitgpt.tech',
+  'github.com/Muhammad7839/FitGPT',
   'github.com/Muhammad7839/SolarShare'
 ].forEach((marker) => {
   assert(indexHtml.includes(marker), `index.html should preserve fast-lane proof: ${marker}`);
